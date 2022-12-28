@@ -1,0 +1,147 @@
+/* Imported fonts from Google */
+/* Heading/Logo */
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+/* Sections/H2 */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap');
+/* Main text */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+/* Footer */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-family: 'Acme', sans-serif;
+  text-shadow: 3px 3px 5px #CCCCCC;
+  font-size: 50px;
+  background-color: rgb(109, 109, 109);
+  color: rgb(29, 14, 161);
+  text-align: center;
+
+  outline: 20px ridge rgb(49, 49, 49);
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 250px;
+  height: 75px;
+
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.post{
+  background-color: rgb(214, 214, 214);
+  border: 10px;
+  border-radius: 3px;
+  border-style: solid;
+  border-color:#000000;
+  padding: 1em;
+}
+
+.post h2 {
+  font-family: 'Rubik', sans-serif;
+  border-bottom: 1px solid black;
+}
+
+.post p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 10px;
+
+  margin-left: 20px;
+}
+
+.post a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.post a:link {
+  color: rgb(0, 0, 0);
+}
+
+.post a:visited {
+  color: rgb(0, 0, 0);
+}
+
+.post a:hover {
+  color: rgb(134, 17, 163);
+  background-color:tomato;
+}
+
+.post a:focus {
+  color: rgb(134, 17, 163);
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Background gradient */
+body {
+	background: linear-gradient(-45deg, #0f14a8, #3355c5, #4986c0, #88afce);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
+	height: 100vh;
+}
+
+footer {
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+
+  color: whitesmoke;
+  background-color: grey;
+  border: 3px solid black;
+  box-shadow: 0px 0px 8px 2px #3399FF;
+
+  width: 180px;
+  height: 60px;
+
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+body.fade-out {
+  opacity: 0;
+  transition: none;
+}
+
+/* Custom scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  /* Changes roundness of the box */
+  border-radius: 0px;
+  /* Changes color behind scroller */
+  background: grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 10px;
+}
