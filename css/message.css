@@ -4,6 +4,7 @@
     background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+    text-align: center;
 }
   
 /* The successful message box */
@@ -12,6 +13,7 @@
     background-color: #0eaf44; /* Red */
     color: white;
     margin-bottom: 15px;
+    text-align: center;
 }
   
 /* The information message box */
@@ -20,6 +22,7 @@
     background-color: #274cc5; /* Red */
     color: white;
     margin-bottom: 15px;
+    text-align: center;
 }
   
 /* The warning message box */
@@ -28,6 +31,7 @@
     background-color: #e0e968; /* Red */
     color: white;
     margin-bottom: 15px;
+    text-align: center;
 }
   
 /* The close button */
