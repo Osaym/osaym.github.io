@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Center on page vertically and horizontally */
+#parent {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#time {
+  font-size: 50px;
+  font-family: 'Anton', sans-serif;
+}
+  
+#colon {
+  animation: blink 0.5s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+  opacity: 0;
+  }
+}
