@@ -20,12 +20,16 @@
 <body>
   <div id="parent">
     <div id="time">
-      <span id="hours"></span><span id="colon">:</span><span id="minutes"></span><span id="colon">:</span><span id="seconds"></span>
+      <span id="hours"></span><span id="colon1">:</span><span id="minutes"></span><span class="hidden" id="colon2">:</span><span class="hidden" id="seconds"></span>
     </div>
   </div>
   <div id="fontSelectors">
     <button id="font1">Click to change font to Helvetica</button>
     <button id="font2">Click to change font to Anton</button>
+  </div>
+  <div id="fontSelectors">
+    <button onclick="showDiv()">Display Seconds?</button>
+    <button onclick="resetAnimation()">Reset Colon Animation</button>
   </div>
 
   <script src="/js/clockScript.js"></script>

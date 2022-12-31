@@ -28,8 +28,16 @@ html, body {
   border: 1px solid black;
 }
   
-#colon {
+#colon1 {
   animation: blink 0.5s linear infinite;
+}
+
+#colon2 {
+  animation: blink 0.5s linear infinite;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes blink {

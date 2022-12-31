@@ -1,3 +1,20 @@
+window.onload = function() {
+  var element = document.getElementById("colon1");
+    element.style.animationPlayState = "paused";
+    element.style.animation = "none";
+    setTimeout(function() {
+      element.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+
+  var element2 = document.getElementById("colon2");
+    element2.style.animationPlayState = "paused";
+    element2.style.animation = "none";
+    setTimeout(function() {
+      element2.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+};
+
+
 // Function to update the clock
 function updateTime() {
     var date = new Date();
@@ -33,6 +50,45 @@ function changeFont2() {
   text.style.fontFamily = 'Anton';
   button.innerHTML = "Change font again to Anton";
 }
+
+function showDiv() {
+  var div = document.getElementById("seconds");
+  div.classList.toggle("hidden");
+
+  var div2 = document.getElementById("colon2");
+  div2.classList.toggle("hidden");
+
+  var element = document.getElementById("colon1");
+    element.style.animationPlayState = "paused";
+    element.style.animation = "none";
+    setTimeout(function() {
+      element.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+
+  var element2 = document.getElementById("colon2");
+    element2.style.animationPlayState = "paused";
+    element2.style.animation = "none";
+    setTimeout(function() {
+      element2.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+}
+
+function resetAnimation() {
+  var element = document.getElementById("colon1");
+    element.style.animationPlayState = "paused";
+    element.style.animation = "none";
+    setTimeout(function() {
+      element.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+
+  var element2 = document.getElementById("colon2");
+    element2.style.animationPlayState = "paused";
+    element2.style.animation = "none";
+    setTimeout(function() {
+      element2.style.animation = "blink 0.5s linear infinite";
+    }, 10);
+}
+
 
 // Update the time every 1000 milliseconds (1 second)
 setInterval(updateTime, 1000);
