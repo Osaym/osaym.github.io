@@ -1,7 +1,37 @@
 html, body {
   height: 100%;
   width: 100%;
+  background-color: rgb(201, 219, 213);
 }
+
+button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #6b227a;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  cursor: grab;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #941328;
+}
+
+button:active {
+  background-color: #270102;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+  cursor: grabbing;
+}
+
+button:focus {
+  outline: none;
+}
+
 /* Center time on page */
 #parent {
   margin: 0;
@@ -13,9 +43,17 @@ html, body {
 }
 
 #fontSelectors {
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
   background-color: rgb(170, 135, 203);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#clockSettings {
+  margin-top: 10px;
+  text-align: center;
+  background-color: rgb(179, 158, 199);
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -34,6 +72,12 @@ html, body {
 
 #colon2 {
   animation: blink 0.5s linear infinite;
+}
+
+#label {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .hidden {

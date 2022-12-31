@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>osaymClock</title>
+    <link href="/css/clockStyle.css" rel="stylesheet" type="text/css" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>osaymClock</title>
-  <link href="/css/clockStyle.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <style>
+      /* Fonts */
+      @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    </style>
+  </head>
 
-  <style>
-    /* Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-  </style>
-</head>
-
-<body>
-  <div id="parent">
-    <div id="time">
-      <span id="hours"></span><span id="colon1">:</span><span id="minutes"></span><span class="hidden" id="colon2">:</span><span class="hidden" id="seconds"></span>
+  <body>
+    <div id="fontSelectors">
+      <p id="label">Change Font</p>
+      <button id="font1">Click to change font to Helvetica</button>
+      <button id="font2">Click to change font to Anton</button>
     </div>
-  </div>
-  <div id="fontSelectors">
-    <button id="font1">Click to change font to Helvetica</button>
-    <button id="font2">Click to change font to Anton</button>
-  </div>
-  <div id="fontSelectors">
-    <button onclick="showDiv()">Display Seconds?</button>
-    <button onclick="resetAnimation()">Reset Colon Animation</button>
-  </div>
+    
+    <div id="clockSettings">
+      <p id="label">Settings</p>
+      <button onclick="showDiv()">Toggle seconds</button>
+      <button onclick="resetAnimation()">Reset colon animation</button>
+    </div>
 
-  <script src="/js/clockScript.js"></script>
-</body>
+    <div id="parent">
+      <div id="time">
+        <span id="hours"></span><span id="colon1">:</span><span id="minutes"></span><span class="hidden" id="colon2">:</span><span class="hidden" id="seconds"></span>
+      </div>
+    </div>
+    <script src="/js/clockScript.js"></script>
+  </body>
 
 </html>
