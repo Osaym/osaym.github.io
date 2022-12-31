@@ -34,7 +34,6 @@ function updateTime() {
 }
 
 function changeFont1() {
-  // Get the text element and the button
   var text = document.getElementById("time");
   var button = document.getElementById("font1");
 
@@ -43,7 +42,6 @@ function changeFont1() {
 }
 
 function changeFont2() {
-  // Get the text element and the button
   var text = document.getElementById("time");
   var button = document.getElementById("font2");
 
