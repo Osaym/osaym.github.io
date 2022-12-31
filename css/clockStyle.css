@@ -2,8 +2,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
-
-/* Center on page vertically and horizontally */
+/* Center time on page */
 #parent {
   margin: 0;
   position: absolute;
@@ -13,9 +12,20 @@ html, body {
   transform: translate(-50%, -50%);
 }
 
+#fontSelectors {
+  margin-top: 20px;
+  text-align: center;
+  background-color: rgb(170, 135, 203);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 #time {
   font-size: 50px;
-  font-family: 'Anton', sans-serif;
+  background-color: antiquewhite;
+  padding: 50px;
+  border-radius: 5%;
+  border: 1px solid black;
 }
   
 #colon {
