@@ -27,7 +27,7 @@ function updateTime() {
     minutes = (minutes < 10 ? "0" : "") + minutes;
     seconds = (seconds < 10 ? "0" : "") + seconds;
 
-    // Display the time in the format HH:MM:SS
+    // Display time in the format HH:MM:SS
     document.getElementById("hours").innerHTML = hours;
     document.getElementById("minutes").innerHTML = minutes;
     document.getElementById("seconds").innerHTML = seconds;
