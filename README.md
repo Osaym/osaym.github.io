@@ -1,3 +1,4 @@
 # osaym.github.io
-* Personal portfolio website, hosted in GitHub Pages
-* Visit this website at [osaym.com](https://www.osaym.com)
+* Personal portfolio website outlining projects, hosted in GitHub Pages
+* Certain projects also may be hosted here in this repository.
+* Visit this website at [Osaym.com](https://osaym.com)!
