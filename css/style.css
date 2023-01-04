@@ -51,12 +51,12 @@ h1 {
 
 .post p {
   font-family: 'Roboto Slab', serif;
+  hyphens: auto;
   font-size: 10px;
   margin-left: 20px;
 }
 
 .post a {
-  text-decoration: none;
   font-weight: bold;
 }
 
@@ -65,20 +65,19 @@ h1 {
 }
 
 .post a:visited {
-  color: rgb(0, 0, 0);
+  color: rgb(65, 65, 65);
 }
 
 .post a:hover {
-  color: rgb(134, 17, 163);
   background-color:tomato;
 }
 
 .post a:focus {
-  color: rgb(134, 17, 163);
+  background-color:tomato;
 }
 
 .content {
-  max-width: 500px;
+  max-width: 750px;
   margin: auto;
 }
 
