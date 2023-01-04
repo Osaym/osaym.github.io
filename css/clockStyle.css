@@ -7,7 +7,7 @@ html, body {
 button {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  color: #ffffff;
+  color: #f0f0f0;
   background-color: #6b227a;
   border: none;
   border-radius: 4px;
@@ -18,7 +18,7 @@ button {
 }
 
 a {
-  color: #ffffff;
+  color: #f0f0f0;
   text-decoration: none;
   font-weight: bold;
 }
