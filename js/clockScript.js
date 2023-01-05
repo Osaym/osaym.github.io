@@ -49,6 +49,14 @@ function changeFont2() {
   button.innerHTML = "Change font again to Anton";
 }
 
+function changeFont3() {
+  var text = document.getElementById("time");
+  var button = document.getElementById("font3");
+
+  text.style.fontFamily = 'Kanit';
+  button.innerHTML = "Change font again to Kanit";
+}
+
 function showDiv() {
   var div = document.getElementById("seconds");
   div.classList.toggle("hidden");
@@ -94,3 +102,4 @@ setInterval(updateTime, 1000);
 // changeFont1 and changeFont2 are called when the buttons are clicked
 document.getElementById("font1").addEventListener("click", changeFont1);
 document.getElementById("font2").addEventListener("click", changeFont2);
+document.getElementById("font3").addEventListener("click", changeFont3);
