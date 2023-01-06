@@ -19,6 +19,7 @@ h1 {
   background-color: rgb(109, 109, 109);
   color: rgb(29, 14, 161);
   text-align: center;
+  user-select: none;
 
   outline: 20px ridge rgb(49, 49, 49);
 
@@ -47,6 +48,7 @@ h1 {
 .post h2 {
   font-family: 'Rubik', sans-serif;
   border-bottom: 1px solid black;
+  user-select: none;
 }
 
 .post p {
