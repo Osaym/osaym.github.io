@@ -85,7 +85,7 @@ h1 {
 
 /* Background gradient */
 body {
-	background: linear-gradient(-45deg, #0f14a8, #3355c5, #4986c0, #88afce);
+	background: linear-gradient(-45deg, #373cde, #a96dc5, #6d80c0, #88afce);
 	background-size: 400% 400%;
 	animation: gradient 5s ease infinite;
 	height: 100vh;
