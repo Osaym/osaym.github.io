@@ -1,47 +1,69 @@
 /* Imported fonts from Google */
-/* Heading/Logo */
-@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-/* Sections/H2 */
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap');
-/* Main text */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-/* Footer */
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Rubik:ital,wght@1,900&family=Roboto+Slab&family=Oswald&display=swap');
+/* Global CSS variables */
+:root {
+  --primary-color: rgb(29, 14, 161);
+  --background-color: rgb(214, 214, 214);
+  --link-color: rgb(0, 0, 0);
+  --visited-link-color: rgb(65, 65, 65);
+  --text-shadow-color: #CCCCCC;
+  --heading-bg-color: rgb(109, 109, 109);
+  --heading-text-color: rgb(29, 14, 161);
+  --footer-bg-color: grey;
+  --footer-border-color: black;
+  --footer-box-shadow-color: #3399FF;
+  --scrollbar-thumb-color: #333;
+  --scrollbar-track-bg-color: grey;
+  --gradient-start-color: #373cde;
+  --gradient-mid-color-1: #a96dc5;
+  --gradient-mid-color-2: #6d80c0;
+  --gradient-end-color: #88afce;
+}
 
+/* General styles */
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: linear-gradient(-45deg, 
+    var(--gradient-start-color), 
+    var(--gradient-mid-color-1), 
+    var(--gradient-mid-color-2), 
+    var(--gradient-end-color));
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  height: 100vh;
+}
+
+.content {
+  max-width: 750px;
+  margin: auto;
+}
+
+/* Heading/Logo */
 h1 {
   font-family: 'Acme', sans-serif;
-  text-shadow: 3px 3px 5px #CCCCCC;
+  text-shadow: 3px 3px 5px var(--text-shadow-color);
   font-size: 50px;
-  background-color: rgb(109, 109, 109);
-  color: rgb(29, 14, 161);
+  background-color: var(--heading-bg-color);
+  color: var(--heading-text-color);
   text-align: center;
   user-select: none;
-
   outline: 20px ridge rgb(49, 49, 49);
-
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
-
+  padding: 5px 20px;
   width: 250px;
   height: 75px;
-
   margin: auto;
   margin-top: 40px;
   margin-bottom: 30px;
 }
 
-.post{
-  background-color: rgb(214, 214, 214);
-  border: 10px;
+/* Post styles */
+.post {
+  background-color: var(--background-color);
+  border: 10px solid var(--footer-border-color);
   border-radius: 3px;
-  border-style: solid;
-  border-color:#000000;
   padding: 1em;
 }
 
@@ -60,69 +82,31 @@ h1 {
 
 .post a {
   font-weight: bold;
-}
-
-.post a:link {
-  color: rgb(0, 0, 0);
+  color: var(--link-color);
 }
 
 .post a:visited {
-  color: rgb(65, 65, 65);
+  color: var(--visited-link-color);
 }
 
-.post a:hover {
-  background-color:tomato;
-}
-
+.post a:hover,
 .post a:focus {
-  background-color:tomato;
+  background-color: tomato;
 }
 
-.content {
-  max-width: 750px;
-  margin: auto;
-}
-
-/* Background gradient */
-body {
-	background: linear-gradient(-45deg, #373cde, #a96dc5, #6d80c0, #88afce);
-	background-size: 400% 400%;
-	animation: gradient 5s ease infinite;
-	height: 100vh;
-}
-
+/* Footer */
 footer {
   font-family: 'Oswald', sans-serif;
   text-align: center;
-
   color: whitesmoke;
-  background-color: grey;
-  border: 3px solid black;
-  box-shadow: 0px 0px 8px 2px #3399FF;
-
+  background-color: var(--footer-bg-color);
+  border: 3px solid var(--footer-border-color);
+  box-shadow: 0px 0px 8px 2px var(--footer-box-shadow-color);
   width: 180px;
   height: 60px;
-
   margin: auto;
   margin-top: 50px;
   margin-bottom: 10px;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-body.fade-out {
-  opacity: 0;
-  transition: none;
 }
 
 /* Custom scrollbar */
@@ -133,15 +117,30 @@ body.fade-out {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  /* Changes roundness of the box */
+  box-shadow: inset 0 0 5px grey;
   border-radius: 0px;
-  /* Changes color behind scroller */
-  background: grey;
+  background: var(--scrollbar-track-bg-color);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #333; 
+  background: var(--scrollbar-thumb-color);
   border-radius: 10px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body.fade-out {
+  opacity: 0;
+  transition: none;
 }
