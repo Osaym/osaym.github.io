@@ -15,42 +15,22 @@ window.onload = function() {
 };
 
 
+// Function to update the clock
 function updateTime() {
-  var date = new Date();
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
 
-  if (isEasternTime) {
-      // Convert to Eastern Time (UTC-5)
-      var offset = date.getTimezoneOffset() + 300; // Convert local time offset to ET offset
-      date = new Date(date.getTime() + offset * 60000);
-  }
+    // Add leading zeros to the hours, minutes, and seconds
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
 
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
-
-  hours = (hours < 10 ? "0" : "") + hours;
-  minutes = (minutes < 10 ? "0" : "") + minutes;
-  seconds = (seconds < 10 ? "0" : "") + seconds;
-
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-}
-
-function adjustToEasternTime() {
-  // toggle Eastern Time
-  isEasternTime = !isEasternTime;
-
-  // update button text based on current setting
-  var button = document.getElementById("est");
-  if (isEasternTime) {
-      button.innerHTML = "Reset to Local Time Zone";
-  } else {
-      button.innerHTML = "Set to Eastern Time Zone";
-  }
-
-  // Update the time display immediately
-  updateTime();
+    // Display time in the format HH:MM:SS
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
 }
 
 function changeFont1() {
@@ -115,11 +95,9 @@ function resetAnimation() {
     }, 10);
 }
 
+
 // Update the time every 1000 milliseconds (1 second)
 setInterval(updateTime, 1000);
-
-// create toggle for Eastern Timezone switch
-var isEasternTime = false;
 
 // changeFont1 and changeFont2 are called when the buttons are clicked
 document.getElementById("font1").addEventListener("click", changeFont1);
