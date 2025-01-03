@@ -1,83 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Metadata for robotic individuals -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="Osaym.com, Osaym, Osaym Omar, ozz">
-  <meta name="description" content="Personal portfolio of Osaym Omar at www.osaym.com">
-  <meta name="author" content="Osaym Omar">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osaym.com - Down for Maintenance</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
+            background-size: 400% 400%;
+            animation: subtleGradient 10s ease infinite;
+            font-family: 'Arial', sans-serif;
+            color: #ecf0f1;
+            position: relative;
+        }
 
-  <!-- Favicon and title for the browser -->
-  <link rel="icon" type="image/png" href="/images/favicon.jpg">
-  <title>Osaym.com</title>
+        @keyframes subtleGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  <!-- Links to external stylesheets -->
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/css/message.css">
+        .container {
+            background: rgba(44, 62, 80, 0.85);
+            padding: 30px;
+            border: 1px solid #bdc3c7;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
 
-  <!-- Font imports -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-  </style>
+        .container h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .container p {
+            font-family: 'Georgia', serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .container a.contact-link {
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: #1abc9c;
+            border: 1px solid #1abc9c;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .container a.contact-link:hover {
+            background-color: #1abc9c;
+            color: #2c3e50;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: #3498db;
+            padding: 8px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            text-align: center;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #ffffff;
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+
+        footer {
+            position: relative;
+            margin-top: 20px;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        @media (max-width: 600px) {
+            .container h1 {
+                font-size: 1.5rem;
+            }
+
+            .container p {
+                font-size: 1rem;
+            }
+
+            .container a.contact-link {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+
+            .links a {
+                font-size: 0.8rem;
+                padding: 6px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>Osaym.com</h1>
-  </header>
-
-  <main>
-    <div class="css-selector">
-      <div class="content">
-        <div class="post">
-          <h2>Welcome.</h2>
-          <p>Welcome to the portfolio website of Osaym Omar.</p>
-
-          <h2>Purpose.</h2>
-          <p>The purpose of this page is to serve as a quick demonstration of my HTML, CSS, and JavaScript skills. From this page, you can follow the external links to view my projects.</p>
-
-          <h2>Knowledge.</h2>
-          <p>
-            I am familiar with the HTML5. CSS3, JavaScript, and Python programming languages.
-            <br>
-            <br>
-            I have understanding of Unix-based CLI environments, such as the MacOS and Linux terminals. Some Linux distributions I have used before are Ubuntu, Kali, and Debian.
-            <br>
-            <br>
-            I am also a Hip-Hop & Rap music producer. Contact me if you are interested in working with me, or would like to hear some music.
-          </p>
-
-          <h2>Projects.</h2>
-          <p>As time has progressed I have worked on many different projects. Here is a quick list of them, and a little bit of information on each one.</p>
-          <ul>
-            <li><p><u><a target="_blank" href="https://stats.uptimerobot.com/XVMgnsnRxX">Status Page:</a></u> this is a small page I created that provides access to the status of all online services I maintain. If something isn't working correctly, you can check to see if it's down using this tool.</p></li>
-            <li><p><u><a target="_blank" href="https://github.com/Osaym/osaym.github.io">Osaym.com:</a></u> this website is a project that began during October 2021. I decided to code my own website because I can and had not, therefore I did. This website is written in HTML5 and CSS3, has JavaScript implementations, and is hosted via GitHub Pages. Any new HTML concepts I learn of or advancements I think of are added whenever I come up with them.</p></li>
-            <li><p><u><a target="_blank" href="https://replit.com/@Osaym/OsaymPassGen">OsaymPassgen:</a></u> this is a project developed by me during the summer of 2021. It is a fully customizable, CLI-based Python script allowing the user to create a strong password for use with accounts on any website they desire. The goal was to create a password generator similar to that of the one included in "LastPass," however entirely written in Python for a challenge.</p></li>
-            <li><p><u><a target="_blank" href="https://replit.com/@Osaym/LoopermanLinkCreator">LoopermanLinkCreator:</a></u> this is a project developed by me during the summer of 2022. As a music producer, I often find myself sampling different loops found online, most often on the website <a target="_blank" href="https://www.looperman.com">Looperman.</a> Because of this, I decided to build a web scraper in Python that obtains the BPM and musical key of any loop inputted solely from the file name, requiring no other information. This Python script is hosted on Replit and may be found at the link above.</p></li>
-            <li><p><u><a target="_blank" href="https://replit.com/@Osaym/AdvancedRockPaperScissors">AdvancedRockPaperScissors:</a></u> this is a game developed by me during September 2022. Written in Python, this is a script that plays a traditional game of "rock paper scissors" with the user. Replit Database functionalities are integrated in the code to track wins, losses and ties globally on each run. The terminal is also styled colorfully to make the program enjoyable to run.</p></li>
-            <li><p><u><a target="_blank" href="/clock.html">OsaymClock:</a></u> this page is a new project that began development during December 2022 in which I am attempting to write an HTML clock from scratch. If this sounds interesting to you, you can click the link provided to interact with it.</p></li>
-          </ul>
-
-          <h2>Contact.</h2>
-          <p>
-            General inquiries: <a href="mailto:admin@osaym.com">osaym@osaym.com</a>
-          </p>
+    <div class="container">
+        <h1>Osaym.com is temporarily down for reconstruction</h1>
+        <p>Estimated date of completion: End of January 2025</p>
+        <a href="mailto:osaym@osaym.com" class="contact-link">osaym@osaym.com</a>
+        <div class="links">
+            <a href="https://byexodus.com" target="_blank">byexodus.com</a>
+            <a href="https://ikhlasrealty.com" target="_blank">ikhlasrealty.com</a>
+            <a href="https://blog.ikhlasrealty.com" target="_blank">blog.ikhlasrealty.com</a>
+            <a href="https://vicegerent.com" target="_blank">vicegerent.com</a>
+            <a href="https://linkedin.com/in/osaym" target="_blank">linkedin.com/osaym</a>
         </div>
-      </div>
     </div>
-  </main>
-
-  <footer>
-    <p id="footer"></p>
-  </footer>
-
-  <br>
-
-  <!-- Include external script -->
-  <script src="js/script.js"></script>
+    <footer>
+        &copy; 2025 Osaym Omar
+    </footer>
+    <script>
+        // Optional JavaScript can be added here if interactivity is required later
+    </script>
 </body>
 </html>
