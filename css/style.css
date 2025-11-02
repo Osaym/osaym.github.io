@@ -1123,11 +1123,42 @@ section { padding: 6rem 0; }
     .hero-content, .about-content, .contact-content {
         grid-template-columns: 1fr;
         gap: 3rem;
+        text-align: center;
     }
-    .hero-visual { height: 300px; }
-    .hero-title { font-size: 3rem; }
+    .hero-content {
+        justify-items: center;
+    }
+    .hero-visual { 
+        height: 300px;
+        order: -1; /* Put visual above content on mobile */
+    }
+    .hero-text {
+        order: 1;
+    }
+    .hero-title { 
+        font-size: 3rem;
+        text-align: center;
+    }
+    .hero-subtitle {
+        text-align: center;
+    }
+    .hero-description {
+        text-align: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
     .section-title { font-size: 2.5rem; }
     .about-stats { grid-template-columns: repeat(2, 1fr); }
+    .about-content {
+        text-align: center;
+    }
+    .contact-content {
+        text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1153,23 +1184,219 @@ section { padding: 6rem 0; }
     .mobile-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(0.5rem, -0.5rem);
     }
-    .hero-title { font-size: 2.5rem; }
-    .hero-subtitle { font-size: 1.5rem; }
+    .hero-title { 
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .hero-subtitle { 
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .hero-description {
+        text-align: center;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
     .section-title { font-size: 2rem; }
-    .container { padding: 0 1rem; }
+    .section-header {
+        text-align: center;
+    }
+    .container { padding: 0 1.5rem; }
     .timeline::before { left: 0.5rem; }
-    .timeline-item { padding-left: 2.5rem; }
+    .timeline-item { 
+        padding-left: 2.5rem;
+        text-align: left; /* Keep timeline text left-aligned for readability */
+    }
     .timeline-dot { left: 0; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .timeline-content h3,
+    .timeline-content .company {
+        text-align: left;
+    }
+    .projects-grid { 
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .project-card {
+        text-align: center;
+    }
+    .project-content {
+        text-align: center;
+    }
+    .project-tags {
+        justify-content: center;
+    }
     .about-stats { grid-template-columns: 1fr; }
+    .stat-item {
+        text-align: center;
+    }
+    
+    /* Center hero content on mobile */
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    /* Fix floating cards overlap on mobile */
+    .hero-visual { 
+        height: 400px;
+        margin-top: 2rem;
+    }
+    .floating-card {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+    .floating-card i { font-size: 1.5rem; }
+    .card-1 {
+        top: 5%;
+        left: 5%;
+        right: auto;
+    }
+    .card-2 {
+        top: 45%;
+        right: 5%;
+        left: auto;
+    }
+    .card-3 {
+        bottom: 5%;
+        left: 5%;
+        right: auto;
+    }
+    
+    /* Better mobile spacing */
+    .about-content {
+        text-align: center;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .contact-info {
+        justify-content: center;
+    }
+    .contact-item {
+        justify-content: center;
+    }
+    .skills-grid {
+        gap: 2rem;
+    }
+    
+    /* Footer mobile */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    .footer-links {
+        justify-content: center;
+    }
+    
+    /* Social links */
+    .social-links {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-title { font-size: 2rem; }
-    .hero-subtitle { font-size: 1.25rem; }
-    .hero-buttons { flex-direction: column; }
+    .hero { 
+        min-height: auto;
+        padding: 6rem 0 3rem;
+    }
+    .hero-greeting {
+        font-size: 1rem;
+    }
+    .hero-title { 
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+    .hero-subtitle { 
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+    .typing-container {
+        height: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    .hero-buttons { 
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
     .btn {
         width: 100%;
         justify-content: center;
+        padding: 0.875rem 1.5rem;
+    }
+    .section-title { 
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+    .section-label {
+        font-size: 0.875rem;
+    }
+    .section { 
+        padding: 4rem 0;
+    }
+    .container { 
+        padding: 0 1rem;
+    }
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+    
+    /* Further adjust floating cards for small mobile */
+    .hero-visual { height: 350px; }
+    .floating-card {
+        padding: 0.75rem;
+        font-size: 0.75rem;
+        gap: 0.5rem;
+    }
+    .floating-card i { font-size: 1.25rem; }
+    .card-1 {
+        top: 3%;
+        left: 3%;
+    }
+    .card-2 {
+        top: 40%;
+        right: 3%;
+    }
+    .card-3 {
+        bottom: 3%;
+        left: 3%;
+    }
+    
+    /* Improved mobile typography and spacing */
+    .about-orbit {
+        width: 250px;
+        height: 250px;
+    }
+    .orbit-center {
+        width: 80px;
+        height: 80px;
+    }
+    .orbit-item {
+        width: 50px;
+        height: 50px;
+    }
+    .orbit-item i {
+        font-size: 1.25rem;
+    }
+    .project-card {
+        padding: 1.5rem;
+    }
+    .project-content h3 {
+        font-size: 1.25rem;
+    }
+    .skill-category {
+        padding: 1.5rem;
+    }
+    .contact-form {
+        padding: 1.5rem;
     }
 }
