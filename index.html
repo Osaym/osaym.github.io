@@ -3,147 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osaym.com - Down for Maintenance</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
-            background-size: 400% 400%;
-            animation: subtleGradient 10s ease infinite;
-            font-family: 'Arial', sans-serif;
-            color: #ecf0f1;
-            position: relative;
-        }
-
-        @keyframes subtleGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            background: rgba(44, 62, 80, 0.85);
-            padding: 30px;
-            border: 1px solid #bdc3c7;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .container h1 {
-            font-family: 'Courier New', monospace;
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .container p {
-            font-family: 'Georgia', serif;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #ecf0f1;
-        }
-
-        .container a.contact-link {
-            text-decoration: none;
-            font-size: 0.9rem;
-            color: #1abc9c;
-            border: 1px solid #1abc9c;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .container a.contact-link:hover {
-            background-color: #1abc9c;
-            color: #2c3e50;
-        }
-
-        .links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .links a {
-            text-decoration: none;
-            font-size: 0.9rem;
-            color: #3498db;
-            padding: 8px;
-            border: 1px solid #3498db;
-            border-radius: 5px;
-            text-align: center;
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .links a:hover {
-            color: #ffffff;
-            background-color: #2980b9;
-            border-color: #2980b9;
-        }
-
-        footer {
-            position: relative;
-            margin-top: 20px;
-            padding-top: 10px;
-            padding-bottom: 20px;
-            text-align: center;
-            width: 100%;
-            font-size: 0.9rem;
-            color: #bdc3c7;
-        }
-
-        @media (max-width: 600px) {
-            .container h1 {
-                font-size: 1.5rem;
-            }
-
-            .container p {
-                font-size: 1rem;
-            }
-
-            .container a.contact-link {
-                font-size: 0.8rem;
-                padding: 6px 10px;
-            }
-
-            .links a {
-                font-size: 0.8rem;
-                padding: 6px;
-            }
-        }
-    </style>
+    <meta name="description" content="Osaym Omar - Technology Professional & Web Developer Portfolio">
+    <title>Osaym.com</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Osaym.com is temporarily down for reconstruction</h1>
-        <p>Estimated date of completion: End of January 2025</p>
-        <a href="mailto:osaym@osaym.com" class="contact-link">osaym@osaym.com</a>
-        <div class="links">
-            <a href="https://byexodus.com" target="_blank">byexodus.com</a>
-            <a href="https://ikhlasrealty.com" target="_blank">ikhlasrealty.com</a>
-            <a href="https://blog.ikhlasrealty.com" target="_blank">blog.ikhlasrealty.com</a>
-            <a href="https://vicegerent.com" target="_blank">vicegerent.com</a>
-            <a href="https://linkedin.com/in/osaym" target="_blank">linkedin.com/in/osaym</a>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">
+                    <span class="logo-text">Osaym</span>
+                    <span class="logo-dot">.</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-    <footer>
-        &copy; 2025 Osaym Omar
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="stars"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <p class="hero-greeting">Hello, I'm</p>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Osaym Omar</span>
+                    </h1>
+                    <div class="typing-container">
+                        <h2 class="hero-subtitle">
+                            <span class="typing-text"></span>
+                            <span class="cursor">|</span>
+                        </h2>
+                    </div>
+                    <p class="hero-description">
+                        Technology professional specializing in technical support, web development, 
+                        and IT infrastructure. Passionate about creating seamless digital experiences 
+                        and solving complex technical challenges.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <span>View Projects</span>
+                            <i class="fas fa-briefcase"></i>
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/osaym" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/osaym" target="_blank" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:osaym@osaym.com" class="social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-code"></i>
+                        <span>Web Development</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-network-wired"></i>
+                        <span>IT Infrastructure</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Technical Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Get To Know Me</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p class="about-lead">
+                        I'm a dedicated technology professional with a passion for creating innovative solutions 
+                        and providing exceptional technical support.
+                    </p>
+                    <p>
+                        With extensive experience in educational technology environments, I specialize in managing 
+                        complex IT infrastructures, developing custom web solutions, and leading technical teams. 
+                        My expertise spans across multiple platforms including Apple, Windows, and ChromeOS ecosystems.
+                    </p>
+                    <p>
+                        Currently serving as a Media Technology Support Liaison at Lowell Public Schools, I've 
+                        streamlined technology distribution processes across 7 schools and managed diverse technology 
+                        inventories. I also develop and maintain custom Shopify websites, combining technical expertise 
+                        with creative problem-solving.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="4">0</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="4">0</span>
+                            <span class="stat-label">Websites Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="7">0</span>
+                            <span class="stat-label">Schools Supported</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="1000">0</span>
+                            <span class="stat-label">Devices Managed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <div class="image-wrapper">
+                        <div class="image-bg"></div>
+                        <div class="skills-orbit">
+                            <div class="orbit-item orbit-1"><i class="fab fa-apple"></i></div>
+                            <div class="orbit-item orbit-2"><i class="fab fa-google"></i></div>
+                            <div class="orbit-item orbit-3"><i class="fab fa-windows"></i></div>
+                            <div class="orbit-item orbit-4"><i class="fab fa-js"></i></div>
+                            <div class="orbit-item orbit-5"><i class="fab fa-html5"></i></div>
+                            <div class="orbit-item orbit-6"><i class="fab fa-css3-alt"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">My Journey</span>
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <!-- Lowell Public Schools -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Media Technology Support Liaison</h3>
+                                <h4>Lowell Public Schools</h4>
+                            </div>
+                            <span class="timeline-date">Jun 2025 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Standardized Chromebook distribution processes across 7 middle and elementary schools</li>
+                            <li>Managed technology inventory including MacBooks, ClearTouch panels, and student Chromebooks</li>
+                            <li>Leveraged JAMF for effective management and deployment of Apple devices district-wide</li>
+                            <li>Provided expert technical support for Apple, Windows, and ChromeOS devices</li>
+                            <li>Collaborated with network managers on connectivity issues with WAPs and network switches</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">JAMF</span>
+                            <span class="tag">Google Admin</span>
+                            <span class="tag">Active Directory</span>
+                            <span class="tag">Network Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computer Repair Technician -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Computer Repair Technician</h3>
+                                <h4>Lowell Public Schools</h4>
+                            </div>
+                            <span class="timeline-date">Mar 2024 - Jun 2025</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Performed advanced hardware and software troubleshooting across Apple, ChromeOS platforms</li>
+                            <li>Created, interviewed, trained, and managed a team of 6 student interns</li>
+                            <li>Managed daily operations ensuring quality control and timely completion of repairs</li>
+                            <li>Diagnosed and repaired wireless access points and network infrastructure</li>
+                            <li>Performed complete overhaul of technology storage areas at Lowell High School</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Leadership</span>
+                            <span class="tag">IncidentIQ</span>
+                            <span class="tag">Hardware Repair</span>
+                            <span class="tag">Network Diagnostics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vicegerent -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Webmaster & Technology Manager</h3>
+                                <h4>Vicegerent</h4>
+                            </div>
+                            <span class="timeline-date">Jan 2025 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Designed and developed custom Shopify website using Liquid, HTML, CSS, and JavaScript</li>
+                            <li>Created tailored Shopify sections to enhance user experience and product showcasing</li>
+                            <li>Managed domain registration and DNS configuration</li>
+                            <li>Led consolidation of executive contact databases and cloud storage solutions</li>
+                            <li>Provided comprehensive remote technical support across Apple platforms</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Shopify</span>
+                            <span class="tag">Liquid</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">DNS Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Haverhill Public Schools -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Computer Technician I</h3>
+                                <h4>Haverhill Public Schools</h4>
+                            </div>
+                            <span class="timeline-date">Jul 2023 - Jan 2024</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Performed advanced troubleshooting across Windows, macOS, iOS, and iPadOS platforms</li>
+                            <li>Managed district devices using Google Admin, Active Directory, Lansweeper, and Aruba AirWave</li>
+                            <li>Terminated RJ45 cables and installed security cameras for infrastructure upgrades</li>
+                            <li>Coordinated distribution of Chromebooks and technology to schools district-wide</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Multi-Platform Support</span>
+                            <span class="tag">Infrastructure</span>
+                            <span class="tag">Inventory Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chromebook Repair Intern -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3>Chromebook Repair Intern</h3>
+                                <h4>Haverhill Public Schools</h4>
+                            </div>
+                            <span class="timeline-date">Jun 2022 - Jul 2023</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Learned to diagnose, troubleshoot, and fully repair Chromebooks</li>
+                            <li>Continued repairs independently on-site at Haverhill High School as a senior</li>
+                            <li>Trained and supervised new student interns in repair techniques</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">ChromeOS</span>
+                            <span class="tag">Hardware Repair</span>
+                            <span class="tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Vicegerent -->
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="images/vicegerent.png" alt="Vicegerent Website">
+                        <div class="project-overlay">
+                            <a href="https://vicegerent.com" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Vicegerent.com</h3>
+                        <p>Custom Shopify luxury tailoring website featuring bespoke design, seamless user experience, and sophisticated branding implementation using Liquid templating and modern JavaScript.</p>
+                        <div class="project-tags">
+                            <span class="tag">Shopify</span>
+                            <span class="tag">Liquid</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                        <a href="https://vicegerent.com" target="_blank" class="project-btn">
+                            Visit Site <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- didueat -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="images/didueat.png" alt="didueat Meal Tracker">
+                        <div class="project-overlay">
+                            <a href="https://didueat.osaym.com" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>didueat?</h3>
+                        <p>Full-stack meal and water tracker with shared dashboard access. Built with React and Node.js, featuring JWT authentication, MongoDB database, dark mode, and mobile-optimized responsive design with beautiful animations.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Express</span>
+                        </div>
+                        <a href="https://didueat.osaym.com" target="_blank" class="project-btn">
+                            Visit Site <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ikhlas Realty -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="images/ikhlasrealty.png" alt="Ikhlas Realty Website">
+                        <div class="project-overlay">
+                            <a href="https://ikhlasrealty.com" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>IkhlasRealty.com</h3>
+                        <p>Professional real estate website with modern design, property listings, and optimized user interface for seamless property browsing and client engagement.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                        <a href="https://ikhlasrealty.com" target="_blank" class="project-btn">
+                            Visit Site <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- By Exodus -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="images/byexodus.png" alt="ByExodus Website">
+                        <div class="project-overlay">
+                            <a href="https://byexodus.com" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>ByExodus.com</h3>
+                        <p>Custom Shopify e-commerce platform built entirely with Liquid templating language. Features fully custom theme development, intuitive navigation, and responsive design to deliver exceptional shopping experience across all devices.</p>
+                        <div class="project-tags">
+                            <span class="tag">Shopify</span>
+                            <span class="tag">Liquid</span>
+                            <span class="tag">Custom Theme</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="https://byexodus.com" target="_blank" class="project-btn">
+                            Visit Site <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">What I Do</span>
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <!-- Web Development -->
+                <div class="skill-category" data-aos="fade-up">
+                    <div class="skill-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>HTML & CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>React</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Node.js</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>MongoDB</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Shopify/Liquid</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Responsive Design</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Git/GitHub</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT Infrastructure -->
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>IT Infrastructure</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>JAMF (Apple MDM)</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Google Admin</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Active Directory</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>VLANs & Networking</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Aruba AirWave</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>DNS Management</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Support -->
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Technical Support</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>macOS/iOS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>ChromeOS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Windows</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Hardware Repair</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Systems & Tools -->
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-header">
+                        <i class="fas fa-server"></i>
+                        <h3>Systems & Tools</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>IncidentIQ</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Lansweeper</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Security Cameras</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Cable Termination</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Skills -->
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Additional Skills</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Team Leadership</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Documentation</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Project Management</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Training & Onboarding</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Contact Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's Work Together</h3>
+                    <p>
+                        I'm always interested in hearing about new projects and opportunities. 
+                        Whether you need technical support, web development, or IT consulting, 
+                        feel free to reach out!
+                    </p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:osaym@osaym.com">osaym@osaym.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Haverhill, MA</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Response Time</h4>
+                                <p>Usually within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://linkedin.com/in/osaym" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/osaym" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:osaym@osaym.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" required placeholder=" ">
+                        <label>Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" required placeholder=" ">
+                        <label>Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" required placeholder=" ">
+                        <label>Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" required placeholder=" "></textarea>
+                        <label>Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+                <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Osaym Omar. All rights reserved.</p>
+                    <p style="margin-top: 0.5rem;"><a href="https://status.osaym.com" target="_blank" style="color: var(--primary-color); text-decoration: none; transition: opacity 0.3s;">View Status of Osaym's Services →</a></p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
     </footer>
-    <script>
-        // Optional JavaScript can be added here if interactivity is required later
-    </script>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
