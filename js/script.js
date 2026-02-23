@@ -215,47 +215,47 @@ const animateObserver = new IntersectionObserver((entries) => {
 
 animateElements.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = getTransform(el.getAttribute('data-aos'));
+    el.style.transform = 'scale(0.985)';
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     animateObserver.observe(el);
 });
-
-function getTransform(animation) {
-    const transforms = {
-        'fade-up': 'translateY(50px)',
-        'fade-down': 'translateY(-50px)',
-        'fade-left': 'translateX(50px)',
-        'fade-right': 'translateX(-50px)'
-    };
-    return transforms[animation] || 'translateY(50px)';
-}
 
 // Add animate class style
 const animateStyle = document.createElement('style');
 animateStyle.textContent = `
     .aos-animate {
         opacity: 1 !important;
-        transform: translate(0, 0) !important;
+        transform: scale(1) !important;
     }
 `;
 document.head.appendChild(animateStyle);
 
-// ===== Skill Progress Animation =====
-const skillBars = document.querySelectorAll('.skill-progress');
+// ===== Clickable News Cards =====
+const clickableNewsCards = document.querySelectorAll('.clickable-news-card');
 
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const progress = entry.target.style.getPropertyValue('--progress');
-            entry.target.style.width = progress;
-            skillObserver.unobserve(entry.target);
+clickableNewsCards.forEach(card => {
+    const destinationUrl = card.getAttribute('data-url');
+
+    if (!destinationUrl) {
+        return;
+    }
+
+    card.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+            return;
         }
-    });
-}, { threshold: 0.5 });
 
-skillBars.forEach(bar => {
-    bar.style.width = '0';
-    skillObserver.observe(bar);
+        window.open(destinationUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+            return;
+        }
+
+        event.preventDefault();
+        window.open(destinationUrl, '_blank', 'noopener,noreferrer');
+    });
 });
 
 // ===== Contact Form =====
@@ -336,6 +336,13 @@ window.addEventListener('scroll', () => {
         el.style.transform = `translateY(${scrolled * speed}px)`;
     });
 });
+
+// ===== Auto Update Footer Year =====
+const currentYearElement = document.getElementById('currentYear');
+
+if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+}
 
 // ===== Console Easter Egg =====
 console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
