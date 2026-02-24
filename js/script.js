@@ -260,12 +260,105 @@ clickableNewsCards.forEach(card => {
 
 // ===== Contact Form =====
 const contactForm = document.getElementById('contactForm');
+const MIN_FORM_FILL_TIME_MS = 3500;
+const FORM_SUBMIT_COOLDOWN_MS = 45000;
+const STORAGE_LAST_SUBMIT_KEY = 'contactLastSubmitAt';
 
-contactForm.addEventListener('submit', async (e) => {
+let toastContainer = null;
+
+function getToastContainer() {
+    if (toastContainer) {
+        return toastContainer;
+    }
+
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+    return toastContainer;
+}
+
+function showToast(message, type = 'success') {
+    const container = getToastContainer();
+    const toast = document.createElement('div');
+    const iconClass = type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check';
+
+    toast.className = `toast toast--${type}`;
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.innerHTML = `
+        <i class="fas ${iconClass} toast__icon" aria-hidden="true"></i>
+        <p class="toast__message">${message}</p>
+    `;
+
+    container.appendChild(toast);
+
+    window.setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(6px) scale(0.98)';
+        toast.style.transition = 'opacity 180ms ease, transform 180ms ease';
+
+        window.setTimeout(() => {
+            toast.remove();
+        }, 200);
+    }, 4200);
+}
+
+function getLastSubmitAt() {
+    try {
+        return Number(localStorage.getItem(STORAGE_LAST_SUBMIT_KEY) || '0');
+    } catch {
+        return 0;
+    }
+}
+
+function setLastSubmitAt(timestamp) {
+    try {
+        localStorage.setItem(STORAGE_LAST_SUBMIT_KEY, String(timestamp));
+    } catch {
+        // Ignore storage failures (private mode, disabled storage, etc.)
+    }
+}
+
+if (contactForm) {
+    contactForm.dataset.loadedAt = String(Date.now());
+}
+
+contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form data
     const formData = new FormData(contactForm);
+
+    // Bot trap: honeypot should stay empty
+    const honeypotValue = String(formData.get('company') || '').trim();
+    if (honeypotValue) {
+        return;
+    }
+
+    // Bot trap: very fast submissions are likely automated
+    const loadedAt = Number(contactForm.dataset.loadedAt || Date.now());
+    if (Date.now() - loadedAt < MIN_FORM_FILL_TIME_MS) {
+        showToast('Please wait a few seconds before submitting.', 'error');
+        return;
+    }
+
+    // Lightweight rate limit to reduce repeat bot spam
+    const lastSubmitAt = getLastSubmitAt();
+    if (lastSubmitAt && Date.now() - lastSubmitAt < FORM_SUBMIT_COOLDOWN_MS) {
+        showToast('Please wait a bit before sending another message.', 'error');
+        return;
+    }
+
+    // Spam signal: too many links in a single message
+    const subjectText = String(formData.get('subject') || '');
+    const messageText = String(formData.get('message') || '');
+    const linkCount = (subjectText + ' ' + messageText).match(/https?:\/\/|www\./gi)?.length || 0;
+    if (linkCount > 2) {
+        showToast('Please reduce the number of links and try again.', 'error');
+        return;
+    }
+
+    formData.delete('company');
     const data = Object.fromEntries(formData);
     
     // Show loading state
@@ -276,7 +369,7 @@ contactForm.addEventListener('submit', async (e) => {
     
     try {
         // Send to Google Sheets
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxaRjeQAaQB71f31ytQZg6QDwYoKz7XgAxESO4E2rIXb4rGi3TbuLwuGyucNMfKLrGz/exec', {
+        await fetch('https://script.google.com/macros/s/AKfycbzonW_5JsZNNpdTRXbBPSAepnBANAvukEdqR20KXwLWodOYPn-siu-794Mrp7737W7h/exec', {
             method: 'POST',
             mode: 'no-cors',
             body: JSON.stringify(data),
@@ -286,15 +379,16 @@ contactForm.addEventListener('submit', async (e) => {
         });
         
         // With no-cors mode, we can't read the response, but if no error was thrown, it worked
-        // Show success message
-        alert('Thank you for your message! I will get back to you soon. 🎉');
+        showToast('Thanks for your message. I will get back to you soon.', 'success');
+        setLastSubmitAt(Date.now());
         
         // Reset form
         contactForm.reset();
+        contactForm.dataset.loadedAt = String(Date.now());
         
     } catch (error) {
         console.error('Error submitting form:', error);
-        alert('Oops! Something went wrong. Please try emailing me directly at osaym@osaym.com\n\nError: ' + error.message);
+        showToast('Something went wrong. Please email osaym@osaym.com directly.', 'error');
     } finally {
         // Restore button
         submitBtn.innerHTML = originalBtnText;
@@ -317,24 +411,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Add Page Load Animation =====
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease-in';
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
 // ===== Parallax Effect for Hero Section =====
-window.addEventListener('scroll', () => {
+const parallaxElements = document.querySelectorAll('.floating-card');
+let parallaxTicking = false;
+
+function updateParallax() {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.floating-card');
-    
+
     parallaxElements.forEach((el, index) => {
-        const speed = 0.5 + (index * 0.1);
-        el.style.transform = `translateY(${scrolled * speed}px)`;
+        const speed = 0.1 + (index * 0.05);
+        const offset = Math.min(scrolled * speed, 120);
+        el.style.transform = `translate3d(0, ${offset}px, 0)`;
     });
+
+    parallaxTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!parallaxTicking) {
+        window.requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+    }
 });
 
 // ===== Auto Update Footer Year =====
