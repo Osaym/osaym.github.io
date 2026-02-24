@@ -441,6 +441,220 @@ if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
 }
 
+// ===== Konami Code Easter Egg =====
+const konamiSequence = [
+    'ArrowUp',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowLeft',
+    'ArrowRight',
+    'b',
+    'a'
+];
+
+let konamiPosition = 0;
+let konamiActivated = false;
+
+function activateKonamiMode() {
+    if (konamiActivated) {
+        showToast('Konami mode is already active 😎', 'success');
+        return;
+    }
+
+    konamiActivated = true;
+    document.body.classList.add('konami-mode');
+    showToast('Konami code accepted. Retro mode unlocked!', 'success');
+}
+
+window.addEventListener('keydown', (event) => {
+    if (isTypingTarget(document.activeElement)) {
+        return;
+    }
+
+    const normalizedKey = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+    const requiredKey = konamiSequence[konamiPosition];
+
+    if (normalizedKey === requiredKey) {
+        konamiPosition += 1;
+        if (konamiPosition === konamiSequence.length) {
+            activateKonamiMode();
+            konamiPosition = 0;
+        }
+        return;
+    }
+
+    konamiPosition = normalizedKey === konamiSequence[0] ? 1 : 0;
+});
+
+// ===== Logo Multi-Click Easter Egg =====
+const logoLink = document.querySelector('.logo');
+const logoSecret = document.getElementById('logoSecret');
+let logoClickCount = 0;
+let logoClickTimer = null;
+
+function showLogoSecret() {
+    if (!logoSecret) {
+        return;
+    }
+
+    logoSecret.classList.add('is-visible');
+    logoSecret.setAttribute('aria-hidden', 'false');
+    window.setTimeout(() => {
+        logoSecret.classList.remove('is-visible');
+        logoSecret.setAttribute('aria-hidden', 'true');
+    }, 5000);
+}
+
+logoLink?.addEventListener('click', () => {
+    logoClickCount += 1;
+
+    if (logoClickTimer) {
+        window.clearTimeout(logoClickTimer);
+    }
+
+    logoClickTimer = window.setTimeout(() => {
+        logoClickCount = 0;
+    }, 1800);
+
+    if (logoClickCount >= 7) {
+        logoClickCount = 0;
+        showLogoSecret();
+    }
+});
+
+// ===== Fake Terminal Easter Egg =====
+const fakeTerminal = document.getElementById('fakeTerminal');
+const fakeTerminalOutput = document.getElementById('fakeTerminalOutput');
+const fakeTerminalForm = document.getElementById('fakeTerminalForm');
+const fakeTerminalInput = document.getElementById('fakeTerminalInput');
+
+function appendTerminalLine(text, className = '') {
+    if (!fakeTerminalOutput) {
+        return;
+    }
+
+    const line = document.createElement('p');
+    line.textContent = text;
+    if (className) {
+        line.className = className;
+    }
+
+    fakeTerminalOutput.appendChild(line);
+    fakeTerminalOutput.scrollTop = fakeTerminalOutput.scrollHeight;
+}
+
+function isTypingTarget(element) {
+    if (!element) {
+        return false;
+    }
+
+    return (
+        element.tagName === 'INPUT'
+        || element.tagName === 'TEXTAREA'
+        || element.isContentEditable
+    );
+}
+
+function openFakeTerminal() {
+    if (!fakeTerminal) {
+        return;
+    }
+
+    fakeTerminal.classList.add('is-open');
+    fakeTerminal.setAttribute('aria-hidden', 'false');
+    window.setTimeout(() => fakeTerminalInput?.focus(), 60);
+}
+
+function closeFakeTerminal() {
+    if (!fakeTerminal) {
+        return;
+    }
+
+    fakeTerminal.classList.remove('is-open');
+    fakeTerminal.setAttribute('aria-hidden', 'true');
+}
+
+window.addEventListener('keydown', (event) => {
+    const activeElement = document.activeElement;
+
+    if ((event.key === '`' || event.key === '~') && !isTypingTarget(activeElement)) {
+        event.preventDefault();
+        if (fakeTerminal?.classList.contains('is-open')) {
+            closeFakeTerminal();
+        } else {
+            openFakeTerminal();
+        }
+    }
+
+    if (event.key === 'Escape' && fakeTerminal?.classList.contains('is-open')) {
+        closeFakeTerminal();
+    }
+});
+
+document.querySelectorAll('[data-terminal-close]').forEach((element) => {
+    element.addEventListener('click', closeFakeTerminal);
+});
+
+const terminalCommands = {
+    help: () => [
+        'Available: help, about, clear, date, contact'
+    ],
+    about: () => [
+        'Osaym Omar | Technology Professional + Web Developer',
+        'Hidden terminals make websites 12% cooler.'
+    ],
+    date: () => [
+        new Date().toString()
+    ],
+    contact: () => [
+        'Email: osaym@osaym.com',
+        'LinkedIn: linkedin.com/in/osaym'
+    ],
+    clear: () => {
+        if (fakeTerminalOutput) {
+            fakeTerminalOutput.innerHTML = '';
+        }
+        return [];
+    }
+};
+
+fakeTerminalForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const rawCommand = fakeTerminalInput?.value || '';
+    const command = rawCommand.trim().toLowerCase();
+
+    appendTerminalLine(`$ ${rawCommand}`, 'terminal-command');
+
+    if (!command) {
+        appendTerminalLine('Type a command, then press Enter.', 'terminal-muted');
+        if (fakeTerminalInput) {
+            fakeTerminalInput.value = '';
+        }
+        return;
+    }
+
+    const handler = terminalCommands[command];
+    if (!handler) {
+        appendTerminalLine(`Command not found: ${command}`, 'terminal-error');
+        appendTerminalLine('Try: help', 'terminal-muted');
+        if (fakeTerminalInput) {
+            fakeTerminalInput.value = '';
+        }
+        return;
+    }
+
+    const responseLines = handler();
+    responseLines.forEach((line) => appendTerminalLine(line));
+
+    if (fakeTerminalInput) {
+        fakeTerminalInput.value = '';
+    }
+});
+
 // ===== Console Easter Egg =====
 console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
 console.log('%cInterested in the code? Check out my GitHub!', 'font-size: 14px; color: #8b5cf6;');

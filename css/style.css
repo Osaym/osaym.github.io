@@ -1844,3 +1844,170 @@ section {
         font-size: 0.85rem;
     }
 }
+
+/* ===== Easter Eggs ===== */
+body.konami-mode {
+    animation: konamiHueRotate 3.6s linear infinite;
+}
+
+.logo-secret {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    max-width: 320px;
+    padding: 0.95rem 1rem;
+    border-radius: 0.85rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xl);
+    z-index: 1300;
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logo-secret.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.logo-secret-title {
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.logo-secret-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.fake-terminal {
+    position: fixed;
+    inset: 0;
+    z-index: 1400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.fake-terminal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fake-terminal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.64);
+}
+
+.fake-terminal-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(760px, calc(100vw - 2rem));
+    max-height: min(560px, calc(100vh - 2rem));
+    border-radius: 0.85rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.fake-terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fake-terminal-header p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.fake-terminal-close {
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.45rem;
+    cursor: pointer;
+}
+
+.fake-terminal-close:hover {
+    background: var(--bg-primary);
+}
+
+.fake-terminal-output {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.fake-terminal-output p {
+    margin: 0 0 0.45rem;
+}
+
+.fake-terminal-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
+}
+
+.fake-terminal-prompt {
+    color: var(--accent-color);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.95rem;
+}
+
+#fakeTerminalInput {
+    flex: 1;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+#fakeTerminalInput::placeholder {
+    color: var(--text-tertiary);
+}
+
+.terminal-command {
+    color: var(--accent-color);
+}
+
+.terminal-muted {
+    color: var(--text-tertiary);
+}
+
+.terminal-error {
+    color: var(--secondary-color);
+}
+
+@keyframes konamiHueRotate {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(360deg); }
+}

@@ -1,45 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Osaym.com - 404 Page Not Found</title>
-
     <style media="screen">
-      body { background: #734f96; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: #cfcdd1; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px 16px; border-radius: 3px; }
-      /* Error 404 */
-      #message h2 { color: #8d1c10; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      /* Page Not Found */
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0, 0, 0, 1); margin: 0 0 16px;}
-      /* Body */
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; color: #000000; }
-      /* RETURN TO OSAYM.COM? */
-      #message a { display: block; text-align: center; background: #181b6d; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      :root {
+        --bg: #734f96;
+        --card: #cfcdd1;
+        --text: #000000;
+        --title: #8d1c10;
+        --cta: #181b6d;
+      }
 
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      .slant { font-style: italic; }
+      * {
+        box-sizing: border-box;
+      }
 
-      /* Media query for smaller screens */
+      body {
+        background: var(--bg);
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 2rem 1rem;
+      }
+
+      #message {
+        background: var(--card);
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      #message h2 {
+        color: var(--title);
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+
+      #message h1 {
+        font-size: 28px;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 1);
+        margin: 0 0 16px;
+      }
+
+      #message p {
+        line-height: 1.45;
+        margin: 12px 0;
+        font-size: 14px;
+        color: var(--text);
+      }
+
+      .slant {
+        font-style: italic;
+      }
+
+      .actions {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .actions a {
+        display: block;
+        text-align: center;
+        background: var(--cta);
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        padding: 14px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .game-wrap {
+        margin-top: 1.25rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+      }
+
+      .game-header {
+        margin: 0 0 0.6rem;
+        font-size: 0.95rem;
+      }
+
+      .game-zone {
+        position: relative;
+        height: 230px;
+        border: 2px dashed rgba(0, 0, 0, 0.35);
+        border-radius: 6px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      #runner404 {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        background: var(--cta);
+        color: #ffffff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .game-status {
+        margin-top: 0.7rem;
+        font-size: 0.9rem;
+        min-height: 1.4rem;
+      }
+
       @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: #cfcdd1; box-shadow: none; }
-        body { border-top: 16px solid #181b6d; vertical-align: auto; }
+        body {
+          padding: 0;
+          background: var(--card);
+        }
+
+        #message {
+          border-radius: 0;
+          min-height: 100vh;
+          box-shadow: none;
+          padding-top: 1.5rem;
+        }
       }
     </style>
   </head>
-
   <body>
     <div id="message">
       <h2>ERROR 404</h2>
       <h1>Page Not Found</h1>
-      <p>The specified file you're trying to access was not found on my website at this path. Please check the URL for possible mistakes and try again.</p>
-      <p>(The page you are trying to access has either been deleted, moved, or is currently unavailable.)</p>
-      <p class="slant"><strong>EASTER EGG:</strong> The background of this 404 page is the same color as rapper Pi'erre Bourne's album: "The Life of Pierre 4."</p>
-      
-      <h4><a href="https://stats.uptimerobot.com/XVMgnsnRxX">view status of osaym's services?</a></h4>
-      <h4><a href="/index.html">return to osaym.com?</a></h4>
+      <p>The file at this URL doesn’t exist right now. It may have moved, been removed, or never existed.</p>
+      <p class="slant"><strong>EASTER EGG:</strong> Catch the 404 button 4 times to unlock a secret message.</p>
+
+      <div class="game-wrap" aria-live="polite">
+        <p class="game-header"><strong>Mini-game:</strong> click the <code>404</code> button 4 times. It hops during the chase, too.</p>
+        <div class="game-zone" id="gameZone">
+          <button id="runner404" type="button">404</button>
+        </div>
+        <p class="game-status" id="gameStatus">Score: 0 / 4</p>
+      </div>
+
+      <div class="actions">
+        <a href="https://stats.uptimerobot.com/XVMgnsnRxX">view status of osaym's services?</a>
+        <a href="/index.html">return to osaym.com?</a>
+      </div>
     </div>
+
+    <script>
+      const zone = document.getElementById('gameZone');
+      const runner = document.getElementById('runner404');
+      const status = document.getElementById('gameStatus');
+      let score = 0;
+      const targetScore = 4;
+      let lastHoverHopAt = 0;
+      const hoverHopCooldownMs = 650;
+      const autoHopTimer = window.setInterval(function () {
+        if (!runner.disabled) {
+          moveRunner();
+        }
+      }, 1500);
+
+      function moveRunner() {
+        const maxX = Math.max(0, zone.clientWidth - runner.offsetWidth - 6);
+        const maxY = Math.max(0, zone.clientHeight - runner.offsetHeight - 6);
+        const randomX = Math.floor(Math.random() * (maxX + 1));
+        const randomY = Math.floor(Math.random() * (maxY + 1));
+
+        runner.style.left = randomX + 'px';
+        runner.style.top = randomY + 'px';
+      }
+
+      function updateStatus(message) {
+        status.textContent = message;
+      }
+
+      runner.addEventListener('mouseenter', function () {
+        if (runner.disabled) {
+          return;
+        }
+
+        const now = Date.now();
+        if (now - lastHoverHopAt < hoverHopCooldownMs) {
+          return;
+        }
+
+        lastHoverHopAt = now;
+        moveRunner();
+      });
+
+      runner.addEventListener('click', function () {
+        score += 1;
+
+        if (score >= targetScore) {
+          window.clearInterval(autoHopTimer);
+          updateStatus('Phew! Thanks for squashing that bug. 🐛');
+          runner.textContent = 'WIN';
+          runner.disabled = true;
+          runner.style.cursor = 'default';
+          return;
+        }
+
+        updateStatus('Score: ' + score + ' / ' + targetScore);
+        moveRunner();
+      });
+
+      window.addEventListener('resize', moveRunner);
+      moveRunner();
+    </script>
   </body>
 </html>

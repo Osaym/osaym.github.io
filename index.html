@@ -659,6 +659,30 @@
         </div>
     </footer>
 
+    <aside class="logo-secret" id="logoSecret" role="status" aria-live="polite" aria-hidden="true">
+        <p class="logo-secret-title">Developer Lore Unlocked</p>
+        <p class="logo-secret-text">Plot twist: this website has side quests...</p>
+    </aside>
+
+    <section class="fake-terminal" id="fakeTerminal" aria-hidden="true">
+        <div class="fake-terminal-backdrop" data-terminal-close></div>
+        <div class="fake-terminal-panel" role="dialog" aria-modal="true" aria-labelledby="terminalTitle">
+            <div class="fake-terminal-header">
+                <p id="terminalTitle">osaym@website:~</p>
+                <button type="button" class="fake-terminal-close" data-terminal-close aria-label="Close terminal">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="fake-terminal-output" id="fakeTerminalOutput" aria-live="polite">
+                <p>Type <strong>help</strong> to list commands.</p>
+            </div>
+            <form class="fake-terminal-input-wrap" id="fakeTerminalForm">
+                <label for="fakeTerminalInput" class="fake-terminal-prompt">$</label>
+                <input id="fakeTerminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="help" />
+            </form>
+        </div>
+    </section>
+
     <script src="js/script.js"></script>
 </body>
 </html>
