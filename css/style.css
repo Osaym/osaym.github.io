@@ -256,9 +256,11 @@ h1, h2, h3, h4 {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: center;
+    justify-items: center;
+    text-align: center;
     position: relative;
     z-index: 1;
 }
@@ -321,6 +323,7 @@ h1, h2, h3, h4 {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 2rem;
     animation: fadeInUp 0.6s ease-out 0.8s both;
 }
@@ -366,6 +369,7 @@ h1, h2, h3, h4 {
 .social-links {
     display: flex;
     gap: 1rem;
+    justify-content: center;
     animation: fadeInUp 0.6s ease-out 1s both;
 }
 
@@ -452,7 +456,7 @@ h1, h2, h3, h4 {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    animation: fadeInUp 1s ease-out 1.2s both;
+    animation: fadeInUpCentered 1s ease-out 1.2s both;
 }
 
 .mouse {
@@ -1400,6 +1404,17 @@ section {
     }
 }
 
+@keyframes fadeInUpCentered {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
 @keyframes fadeInRight {
     from {
         opacity: 0;
@@ -1523,6 +1538,9 @@ section {
         margin-right: auto;
     }
     .hero-buttons {
+        justify-content: center;
+    }
+    .social-links {
         justify-content: center;
     }
     .section-title { font-size: 2.5rem; }
