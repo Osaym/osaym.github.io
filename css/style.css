@@ -894,6 +894,15 @@ section {
     gap: 2rem;
 }
 
+@media (min-width: 769px) {
+    .projects-grid > .project-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: calc(50% - 1rem);
+        justify-self: center;
+    }
+}
+
 .project-card {
     background: var(--card-bg);
     border-radius: 1rem;
@@ -1109,7 +1118,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: start;
+    align-items: center;
 }
 
 .contact-info {
