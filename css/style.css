@@ -198,6 +198,8 @@ h1, h2, h3, h4 {
     cursor: pointer;
     color: var(--text-primary);
     transition: all var(--transition-speed);
+    touch-action: manipulation; /* Prevents double-tap to zoom on iOS Safari */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .theme-toggle:hover {
@@ -215,6 +217,8 @@ h1, h2, h3, h4 {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    touch-action: manipulation; /* Prevents double-tap to zoom on iOS Safari */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-toggle span {
@@ -222,6 +226,7 @@ h1, h2, h3, h4 {
     height: 2px;
     background: var(--text-primary);
     transition: all var(--transition-speed);
+    transform-origin: center;
 }
 
 /* ===== Hero Section ===== */
@@ -2414,14 +2419,24 @@ section {
         gap: 0.25rem;
         transform: translateY(-100%);
         opacity: 0;
+        pointer-events: none; /* Prevents invisible drawer from blocking clicks */
         transition: transform var(--transition-speed), opacity var(--transition-speed);
         border-bottom: 1px solid var(--border-color);
         max-height: calc(100vh - 4.5rem);
         overflow-y: auto;
-        z-index: 999;
+        z-index: 990;
     }
 
-    .nav-links.active { transform: translateY(0); opacity: 1; }
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-controls {
+        position: relative;
+        z-index: 1000; /* Ensure controls always sit above the sliding drawer */
+    }
 
     .nav-link {
         display: block;
@@ -2429,14 +2444,21 @@ section {
         font-size: 1.05rem;
     }
 
-    .mobile-toggle { display: flex; }
-
-    .mobile-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    .mobile-toggle { 
+        display: flex; 
+        justify-content: center;
     }
-    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+
+    /* Transform lines into a perfect X */
+    .mobile-toggle.active span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+    }
+    .mobile-toggle.active span:nth-child(2) { 
+        opacity: 0; 
+        transform: scaleX(0); /* Squish it to nothing so it physically vanishes, preventing ghost margins */
+    }
     .mobile-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+        transform: translateY(-8.5px) rotate(-45deg);
     }
 
     /* --- Hero --- */
