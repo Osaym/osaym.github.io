@@ -1,13 +1,18 @@
+// Remove preload class after full load to restore scrolling
+window.addEventListener('load', () => {
+    document.body.classList.remove('preload');
+});
+
 // ===== Theme Toggle =====
-const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
 
 // Check for saved theme preference or default to 'dark'
 const currentTheme = localStorage.getItem('theme') || 'dark';
 html.setAttribute('data-theme', currentTheme);
 updateThemeIcon(currentTheme);
 
-themeToggle.addEventListener('click', () => {
+themeToggle?.addEventListener('click', () => {
     const theme = html.getAttribute('data-theme');
     const newTheme = theme === 'light' ? 'dark' : 'light';
     
@@ -17,7 +22,15 @@ themeToggle.addEventListener('click', () => {
 });
 
 function updateThemeIcon(theme) {
+    if (!themeToggle) {
+        return;
+    }
+
     const icon = themeToggle.querySelector('i');
+    if (!icon) {
+        return;
+    }
+
     if (theme === 'dark') {
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
@@ -61,27 +74,25 @@ window.addEventListener('scroll', () => {
 });
 
 // ===== Active Navigation Link =====
-const sections = document.querySelectorAll('section');
 const navItems = document.querySelectorAll('.nav-link');
+const navSectionIds = [...navItems].map(a => a.getAttribute('href').slice(1));
+const trackedSections = navSectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
+// Use IntersectionObserver for reliable active detection with scroll-snap
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navItems.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
         }
     });
-    
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href').slice(1) === current) {
-            item.classList.add('active');
-        }
-    });
+}, {
+    rootMargin: '-50% 0px -50% 0px'  // trigger when section crosses center of viewport
 });
+
+trackedSections.forEach(section => navObserver.observe(section));
 
 // ===== Typing Animation =====
 const typingText = document.querySelector('.typing-text');
@@ -126,6 +137,7 @@ function type() {
 // Start typing animation
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(type, 1000);
+    initEmojiRain();
 });
 
 // ===== Animated Stars Background =====
@@ -162,6 +174,43 @@ style.textContent = `
 document.head.appendChild(style);
 
 createStars();
+
+// ===== Emoji Rain (About Section) =====
+// Drops use the rain container's own height (inset:0 on the section) as
+// reference so the keyframe 0%→100% maps to top-edge → bottom-edge.
+// A *negative* animation-delay pre-seeds each drop at a random point in
+// its cycle so the rain is already falling when you first see the section.
+
+const EMOJI_POOL = ['💻', '🔧', '🛠️', '☁️', '📡', '🔒', '⚡', '🛰️', '🖥️', '🚀'];
+
+function seedDrop(drop) {
+    const duration = 10 + Math.random() * 4;          // 10-14 s per fall
+    const delay    = Math.random() * duration;         // spread across full cycle
+    const size     = 14 + Math.random() * 10;          // 14-24 px
+    const opacity  = 0.3 + Math.random() * 0.35;       // 0.30-0.65
+    const x        = Math.random() * 100;              // 0-100 % of container
+
+    drop.textContent = EMOJI_POOL[Math.floor(Math.random() * EMOJI_POOL.length)];
+    drop.style.cssText =
+        `position:absolute;top:0;left:${x}%;` +
+        `font-size:${size}px;line-height:1;opacity:${opacity};` +
+        `pointer-events:none;will-change:transform,opacity;` +
+        `animation:emojiFall ${duration}s linear ${delay}s infinite backwards;`;
+}
+
+function initEmojiRain() {
+    const container = document.querySelector('.about-emoji-rain');
+    if (!container || container.children.length > 0) return;
+
+    const count = window.matchMedia('(max-width: 768px)').matches ? 24 : 40;
+
+    for (let i = 0; i < count; i++) {
+        const drop = document.createElement('span');
+        drop.className = 'emoji-drop';
+        seedDrop(drop);
+        container.appendChild(drop);
+    }
+}
 
 // ===== Counter Animation =====
 const counters = document.querySelectorAll('.stat-number');
@@ -397,17 +446,15 @@ contactForm?.addEventListener('submit', async (e) => {
 });
 
 // ===== Smooth Scroll =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) {
+            return;
         }
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
@@ -659,3 +706,152 @@ fakeTerminalForm?.addEventListener('submit', (event) => {
 console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
 console.log('%cInterested in the code? Check out my GitHub!', 'font-size: 14px; color: #8b5cf6;');
 console.log('%cLooking to connect? Reach out at osaym@osaym.com', 'font-size: 14px; color: #06b6d4;');
+
+// ===== Paper Airplane Canvas Animation =====
+(function initPlaneCanvas() {
+    const canvas = document.querySelector('.plane-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        W = rect.width;
+        H = rect.height;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const pathDefs = [
+        [{x:-.05,y:.35},{x:.15,y:.1},{x:.25,y:.7},{x:.4,y:.3},{x:.5,y:.05},{x:.45,y:.55},{x:.6,y:.4},{x:.75,y:.15},{x:.7,y:.65},{x:.85,y:.45},{x:.95,y:.2},{x:1.05,y:.5}],
+        [{x:-.05,y:.7},{x:.1,y:.9},{x:.2,y:.3},{x:.35,y:.6},{x:.45,y:.85},{x:.55,y:.25},{x:.65,y:.55},{x:.75,y:.8},{x:.85,y:.2},{x:.95,y:.6},{x:1.05,y:.4}],
+        [{x:-.05,y:.2},{x:.1,y:.05},{x:.25,y:.5},{x:.35,y:.15},{x:.5,y:.4},{x:.6,y:.1},{x:.7,y:.55},{x:.8,y:.25},{x:.9,y:.6},{x:1.05,y:.15}],
+        [{x:-.05,y:.5},{x:.08,y:.25},{x:.18,y:.75},{x:.3,y:.2},{x:.42,y:.7},{x:.54,y:.15},{x:.64,y:.65},{x:.76,y:.3},{x:.88,y:.8},{x:1.05,y:.35}],
+        [{x:-.05,y:.8},{x:.12,y:.55},{x:.24,y:.85},{x:.36,y:.45},{x:.48,y:.75},{x:.6,y:.35},{x:.72,y:.7},{x:.84,y:.4},{x:.96,y:.75},{x:1.05,y:.5}],
+        [{x:-.05,y:.15},{x:.1,y:.4},{x:.2,y:.1},{x:.35,y:.65},{x:.45,y:.2},{x:.55,y:.7},{x:.65,y:.3},{x:.8,y:.8},{x:.9,y:.35},{x:1.05,y:.7}],
+    ];
+
+    // Catmull-Rom evaluate at any fractional t along the control points
+    function evalCatmullRom(cp, t) {
+        const n = cp.length - 1;
+        const seg = Math.min(Math.floor(t * n), n - 1);
+        const lt = (t * n) - seg;
+        const p0 = cp[Math.max(seg - 1, 0)];
+        const p1 = cp[seg];
+        const p2 = cp[Math.min(seg + 1, cp.length - 1)];
+        const p3 = cp[Math.min(seg + 2, cp.length - 1)];
+        const t2 = lt * lt, t3 = t2 * lt;
+        return {
+            x: 0.5 * ((2*p1.x) + (-p0.x+p2.x)*lt + (2*p0.x-5*p1.x+4*p2.x-p3.x)*t2 + (-p0.x+3*p1.x-3*p2.x+p3.x)*t3),
+            y: 0.5 * ((2*p1.y) + (-p0.y+p2.y)*lt + (2*p0.y-5*p1.y+4*p2.y-p3.y)*t2 + (-p0.y+3*p1.y-3*p2.y+p3.y)*t3)
+        };
+    }
+
+    // Build absolute control points from ratio defs
+    function buildCP(def) {
+        return def.map(p => ({ x: p.x * W, y: p.y * H }));
+    }
+
+    const PLANE_COUNT = 6;
+    const TRAIL_STEPS = 120;
+    const planes = [];
+    for (let i = 0; i < PLANE_COUNT; i++) {
+        planes.push({
+            pathDef: pathDefs[i],
+            cp: buildCP(pathDefs[i]),
+            progress: Math.random(),
+            speed: 0.018 + Math.random() * 0.014, // units per second
+            trailLen: TRAIL_STEPS,
+            opacity: 0.22 + Math.random() * 0.12,
+            size: 28 + Math.random() * 10,
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        planes.forEach(p => { p.cp = buildCP(p.pathDef); });
+    });
+
+    function getPrimaryColor() {
+        return getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#6366f1';
+    }
+
+    let lastTime = 0;
+    function drawFrame(now) {
+        const dt = lastTime ? (now - lastTime) / 1000 : 0.016;
+        lastTime = now;
+        ctx.clearRect(0, 0, W, H);
+        const color = getPrimaryColor();
+
+        planes.forEach(plane => {
+            plane.progress += plane.speed * dt;
+            if (plane.progress > 1) plane.progress -= 1;
+
+            const cp = plane.cp;
+            const t = plane.progress;
+
+            // Current position – evaluated analytically (perfectly smooth)
+            const head = evalCatmullRom(cp, t);
+
+            // Draw dashed contrail
+            ctx.save();
+            ctx.setLineDash([6, 5]);
+            ctx.lineWidth = 1.5;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = color;
+            ctx.globalAlpha = plane.opacity * 0.4;
+
+            ctx.beginPath();
+            const trailSpan = 0.08; // how far back the trail extends (in t units)
+            for (let j = plane.trailLen; j >= 0; j--) {
+                let tt = t - (j / plane.trailLen) * trailSpan;
+                if (tt < 0) tt += 1;
+                const pt = evalCatmullRom(cp, tt);
+                if (j === plane.trailLen) ctx.moveTo(pt.x, pt.y);
+                else ctx.lineTo(pt.x, pt.y);
+            }
+            ctx.stroke();
+            ctx.restore();
+
+            // Calculate direction for rotation
+            const ahead = evalCatmullRom(cp, (t + 0.002) % 1);
+            const angle = Math.atan2(ahead.y - head.y, ahead.x - head.x);
+            const s = plane.size;
+
+            // Draw paper airplane
+            ctx.save();
+            ctx.globalAlpha = plane.opacity;
+            ctx.translate(head.x, head.y);
+            ctx.rotate(angle);
+
+            ctx.beginPath();
+            ctx.moveTo(s * 0.5, 0);
+            ctx.lineTo(-s * 0.4, -s * 0.3);
+            ctx.lineTo(-s * 0.15, 0);
+            ctx.lineTo(-s * 0.4, s * 0.3);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+
+            // Fold line
+            ctx.beginPath();
+            ctx.moveTo(s * 0.5, 0);
+            ctx.lineTo(-s * 0.15, 0);
+            ctx.strokeStyle = color;
+            ctx.globalAlpha = plane.opacity * 0.6;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([]);
+            ctx.stroke();
+
+            ctx.restore();
+        });
+
+        requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+})();

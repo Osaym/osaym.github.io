@@ -12,14 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="preload">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-wrapper">
                 <a href="#home" class="logo">
                     <span class="logo-text">Osaym</span>
-                    <span class="logo-dot">.</span>
+                    <span class="logo-dot">.</span><span class="logo-ext">com</span>
                 </a>
                 <div class="nav-links" id="navLinks">
                     <a href="#home" class="nav-link active">Home</a>
@@ -96,60 +96,67 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about viewport-section">
+        <div class="about-emoji-rain" aria-hidden="true"></div>
+        <div class="about-accents" aria-hidden="true">
+            <span class="accent-dot accent-dot-a"></span>
+            <span class="accent-dot accent-dot-b"></span>
+        </div>
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">Get to Know Me</span>
                 <h2 class="section-title">About Me</h2>
                 <div class="section-line"></div>
             </div>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p class="about-lead">
-                        I'm a dedicated technology professional focused on building innovative solutions
-                        and providing exceptional technical support.
-                    </p>
-                    <p>
-                        With extensive experience in educational technology environments, I specialize in managing 
-                        complex IT infrastructures, developing custom web solutions, and leading technical teams. 
-                        My expertise spans across multiple platforms including Apple, Windows, and ChromeOS ecosystems.
-                    </p>
-                    <p>
-                        Currently serving as a Media Technology Support Liaison at Lowell Public Schools, I've
-                        streamlined technology distribution processes across 7 schools and managed diverse technology
-                        inventories. I also design and maintain custom Shopify websites, combining technical expertise
-                        with creative problem-solving.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="4">0</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="4">0</span>
-                            <span class="stat-label">Websites Built</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="7">0</span>
-                            <span class="stat-label">Schools Supported</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="1000">0</span>
-                            <span class="stat-label">Devices Managed</span>
+            <div class="about-content about-hero-split">
+                <div class="about-left" data-aos="fade-right">
+                    <div class="about-card accent-top">
+                        <h3 class="about-headline">I build things that <span class="gradient-text">just work.</span></h3>
+                        <p class="about-secondary">
+                            From managing 1,000+ devices across 7 schools to shipping custom Shopify sites — I operate at the intersection of IT infrastructure and modern web development.
+                        </p>
+                        <div class="about-pills" aria-label="Core focus areas">
+                            <span class="about-pill"><i class="fas fa-server" aria-hidden="true"></i> IT Ops</span>
+                            <span class="about-pill"><i class="fas fa-code" aria-hidden="true"></i> Web Dev</span>
+                            <span class="about-pill"><i class="fas fa-network-wired" aria-hidden="true"></i> Infrastructure</span>
+                            <span class="about-pill"><i class="fas fa-apple-alt" aria-hidden="true"></i> Apple & ChromeOS</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <div class="image-bg"></div>
-                        <div class="skills-orbit">
-                            <div class="orbit-item orbit-1"><i class="fab fa-apple"></i></div>
-                            <div class="orbit-item orbit-2"><i class="fab fa-google"></i></div>
-                            <div class="orbit-item orbit-3"><i class="fab fa-windows"></i></div>
-                            <div class="orbit-item orbit-4"><i class="fab fa-js"></i></div>
-                            <div class="orbit-item orbit-5"><i class="fab fa-html5"></i></div>
-                            <div class="orbit-item orbit-6"><i class="fab fa-css3-alt"></i></div>
-                        </div>
+
+                <div class="about-right" data-aos="fade-left">
+                    <div class="about-card highlight">
+                        <div class="about-card-icon"><i class="fas fa-briefcase"></i></div>
+                        <h4 class="about-card-title">Current Role</h4>
+                        <p>
+                            Media Technology Support Liaison at Lowell Public Schools — standardizing rollouts, managing multi-platform fleets, and keeping 7 schools running.
+                        </p>
+                    </div>
+                    <div class="about-card subtle">
+                        <div class="about-card-icon"><i class="fas fa-bolt"></i></div>
+                        <h4 class="about-card-title">How I Work</h4>
+                        <p>
+                            Methodical problem-solving meets rapid execution. I diagnose root causes, build reliable solutions, and document everything — whether it's a network issue or a full-stack feature.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-stats compact" data-aos="fade-up" data-aos-delay="60">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="4">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="4">0</span>
+                        <span class="stat-label">Websites Built</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="7">0</span>
+                        <span class="stat-label">Schools Supported</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1000">0</span>
+                        <span class="stat-label">Devices Managed</span>
                     </div>
                 </div>
             </div>
@@ -157,7 +164,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience">
+    <section id="experience" class="experience viewport-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">My Journey</span>
@@ -373,7 +380,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <section id="projects" class="projects viewport-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">My Work</span>
@@ -461,7 +468,7 @@
     </section>
 
     <!-- In The News Section -->
-    <section id="news" class="news">
+    <section id="news" class="news viewport-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">Recognition</span>
@@ -515,7 +522,8 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact viewport-section">
+        <canvas class="plane-canvas" aria-hidden="true"></canvas>
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">Get In Touch</span>
@@ -572,6 +580,7 @@
                     </div>
                 </div>
                 <form class="contact-form" data-aos="fade-left" id="contactForm">
+                    <h3>Send a Message</h3>
                     <div class="form-group">
                         <input type="text" name="name" required placeholder=" ">
                         <label>Your Name</label>
@@ -598,28 +607,33 @@
                     </button>
                 </form>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-                <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; <span id="currentYear">2025</span> Osaym Omar. All rights reserved.</p>
-                    <p style="margin-top: 0.5rem;"><a href="https://status.osaym.com" target="_blank" style="color: var(--primary-color); text-decoration: none; transition: opacity 0.3s;">View Status of Osaym's Services →</a></p>
+            <div class="contact-footer-wrap">
+                <div class="footer-divider"></div>
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <a href="#home" class="logo">
+                            <span class="logo-text">Osaym</span><span class="logo-dot">.</span><span class="logo-ext">com</span>
+                        </a>
+                        <p class="footer-tagline">Creativity and completion is a passion.</p>
+                    </div>
+                    <div class="footer-nav">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#experience">Experience</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#news">On the Web</a>
+                        <a href="#contact">Contact</a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#news">On the Web</a>
-                    <a href="#contact">Contact</a>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <p>&copy; <span id="currentYear">2025</span> Osaym Omar. All rights reserved.</p>
+                    <a href="https://status.osaym.com" target="_blank" rel="noopener noreferrer" class="footer-status-link">View Status of Osaym's Services <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
     <aside class="logo-secret" id="logoSecret" role="status" aria-live="polite" aria-hidden="true">
         <p class="logo-secret-title">Developer Lore Unlocked</p>
