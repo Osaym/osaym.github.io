@@ -2269,14 +2269,22 @@ section {
 /* ---------- Tablet (≤968px) ---------- */
 @media (max-width: 968px) {
 
+    /* Disable entirely on mobile to allow smooth natural scrolling */
+    body {
+        scroll-snap-type: none;
+    }
+
+    section {
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+        padding: 5rem 0 3rem 0; /* Creates generous breathing room between sections */
+        scroll-margin-top: 4.5rem; /* Ensures mobile nav links land exactly below the navbar */
+    }
+
     /* Remove forced viewport heights — let content breathe */
     .viewport-section {
         min-height: auto;
         display: block;
-    }
-
-    section {
-        padding: 3rem 0;
     }
 
     .hero {
@@ -2373,6 +2381,15 @@ section {
         margin-top: 0;
         display: block;
         overflow: visible;
+    }
+
+    .contact .container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding-top: 0;
+        padding-bottom: 0;
+        gap: 2rem;
     }
 }
 
