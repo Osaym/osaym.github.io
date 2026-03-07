@@ -450,7 +450,6 @@ h1, h2, h3, h4 {
 }
 
 .floating-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 16px 40px -20px rgba(99, 102, 241, 0.55), var(--shadow-xl);
     border-color: color-mix(in srgb, var(--primary-color) 52%, var(--border-color));
 }
@@ -495,6 +494,12 @@ h1, h2, h3, h4 {
     animation: fadeInUpCentered 1s ease-out 1.2s both;
 }
 
+@media (max-height: 700px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+
 .mouse {
     width: 1.5rem;
     height: 2.5rem;
@@ -526,11 +531,13 @@ section {
     min-height: 100svh;
     min-height: 100dvh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
 .viewport-section > .container {
     width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .section-header {
@@ -724,7 +731,6 @@ section {
 
 .about-card:hover,
 .about-right .about-card:hover {
-    transform: translateY(-4px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
@@ -1312,7 +1318,6 @@ section {
 
 .project-card:hover {
     z-index: 2;
-    transform: translateY(-10px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
@@ -1437,7 +1442,6 @@ section {
 }
 
 .news-card:hover {
-    transform: translateY(-7px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
@@ -1481,6 +1485,8 @@ section {
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-align: center;
+    align-items: center;
 }
 
 .news-source {
@@ -1509,6 +1515,7 @@ section {
     margin-top: auto;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     color: var(--primary-color);
     text-decoration: none;
@@ -1525,26 +1532,28 @@ section {
     background: var(--bg-secondary);
     padding: 0;
     min-height: 100dvh;
-    height: 100dvh;
-    max-height: 100dvh;
-    overflow: hidden;
+    height: auto;
+    max-height: none;
+    overflow: visible;
     position: relative;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .contact.viewport-section {
-    align-items: stretch;
 }
 
 .contact .container {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto;
-    gap: clamp(0.4rem, 0.8vh, 0.65rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vh, 2rem);
     width: 100%;
-    min-height: 0;
-    height: 100%;
-    padding-top: clamp(4.7rem, 5.2vh, 5.15rem);
-    padding-bottom: clamp(0.2rem, 0.45vh, 0.4rem);
+    min-height: 100dvh;
+    height: auto;
+    padding-top: clamp(6rem, 8vh, 7rem);
+    padding-bottom: clamp(2rem, 4vh, 3rem);
     position: relative;
     z-index: 1;
 }
@@ -1556,14 +1565,15 @@ section {
 .contact-content {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1vw, 1rem);
+    gap: clamp(1.5rem, 3vw, 2rem);
     align-items: start;
     align-content: start;
     min-height: 0;
+    flex: 1;
 }
 
 .contact-footer-wrap {
-    margin-top: 0;
+    margin-top: auto;
     min-height: 0;
 }
 
@@ -1593,7 +1603,6 @@ section {
 }
 
 .contact-info:hover {
-    transform: translateY(-4px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
@@ -1703,7 +1712,6 @@ section {
 }
 
 .contact-form:hover {
-    transform: translateY(-4px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
@@ -1806,30 +1814,6 @@ section {
 }
 
 @media (min-width: 969px) {
-    .news {
-        min-height: 100dvh;
-        height: 100dvh;
-        max-height: 100dvh;
-        width: 100vw;
-        max-width: 100vw;
-        overflow: hidden;
-        scroll-margin-top: -4.5rem;
-        padding: 4.5rem 0 2rem 0; /* Creates natural space below the navbar and above the bottom edge */
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-    }
-
-    .news > .container {
-        max-height: 100%;
-        overflow-y: auto;
-        scrollbar-width: none;
-    }
-
-    .news > .container::-webkit-scrollbar {
-        display: none;
-    }
-
     /* Long scrolling sections gracefully centering */
     .experience.viewport-section,
     .projects.viewport-section {
@@ -1857,7 +1841,8 @@ section {
     }
 
     /* Keep About a rigid slide like News */
-    .about.viewport-section {
+    .about.viewport-section,
+    .news {
         min-height: 100dvh;
         height: 100dvh;
         max-height: 100dvh;
@@ -1868,16 +1853,31 @@ section {
         padding: 4.5rem 0 2rem 0;
         box-sizing: border-box;
         display: flex;
-        align-items: center;
+        flex-direction: column;
     }
 
-    .about.viewport-section > .container {
+    .about.viewport-section > .container,
+    .news > .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         max-height: 100%;
         overflow-y: auto;
         scrollbar-width: none;
     }
 
-    .about.viewport-section > .container::-webkit-scrollbar {
+    .about .section-header,
+    .news .section-header {
+        margin-top: 0;
+    }
+
+    .about .about-content,
+    .news .news-grid {
+        margin-bottom: auto;
+    }
+
+    .about.viewport-section > .container::-webkit-scrollbar,
+    .news > .container::-webkit-scrollbar {
         display: none;
     }
 
@@ -1892,29 +1892,34 @@ section {
 
     .contact {
         min-height: 100dvh;
-        height: 100dvh;
-        max-height: 100dvh;
+        height: auto;
+        max-height: none;
         width: 100vw;
         max-width: 100vw;
+        overflow: visible;
         scroll-margin-top: -4.5rem;
     }
 
-    .contact .container {
-        height: 100%;
-        margin-top: 0;
-        grid-template-rows: minmax(0, 1fr) auto minmax(0, 0.85fr);
-        padding-top: 5rem;
-        padding-bottom: 3.5rem;
-        gap: 0;
+    .contact > .container {
+        max-height: none;
+        overflow-y: visible;
+        scrollbar-width: none;
+        height: auto;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        gap: 1.5rem;
+    }
+
+    .contact > .container::-webkit-scrollbar {
+        display: none;
     }
 
     .contact .section-header {
         margin-bottom: 0;
-        align-self: center;
     }
 
     .contact-content {
-        align-self: center;
+        align-self: flex-start;
         height: auto;
         gap: clamp(1.5rem, 3vw, 3rem);
         align-items: stretch;
@@ -1932,8 +1937,8 @@ section {
     }
 
     .contact-footer-wrap {
-        margin-top: 0;
-        align-self: end;
+        margin-top: auto;
+        width: 100%;
     }
 
     .footer-top {

@@ -253,7 +253,18 @@ const animateElements = document.querySelectorAll('[data-aos]');
 const animateObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('aos-animate');
+            // Apply straight to element styles so it transitions in
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'scale(1)';
+            
+            // Clean up the transition property after animation completes
+            // so it doesn't fight hovering/VanillaTilt later
+            const delay = parseInt(entry.target.getAttribute('data-aos-delay') || '0');
+            setTimeout(() => {
+                entry.target.style.transition = '';
+                entry.target.style.transform = '';
+            }, 600 + delay); // matches transition duration + delay
+            
             animateObserver.unobserve(entry.target);
         }
     });
@@ -266,18 +277,15 @@ animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'scale(0.985)';
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    
+    // Handle data-aos-delay if specified
+    const delay = el.getAttribute('data-aos-delay');
+    if (delay) {
+        el.style.transitionDelay = `${delay}ms`;
+    }
+    
     animateObserver.observe(el);
 });
-
-// Add animate class style
-const animateStyle = document.createElement('style');
-animateStyle.textContent = `
-    .aos-animate {
-        opacity: 1 !important;
-        transform: scale(1) !important;
-    }
-`;
-document.head.appendChild(animateStyle);
 
 // ===== Clickable News Cards =====
 const clickableNewsCards = document.querySelectorAll('.clickable-news-card');
@@ -855,3 +863,44 @@ console.log('%cLooking to connect? Reach out at osaym@osaym.com', 'font-size: 14
     }
     requestAnimationFrame(drawFrame);
 })();
+// ===== 3D Tilt Effect =====
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof VanillaTilt !== 'undefined') {
+        const tiltElements = document.querySelectorAll('.project-card, .news-card, .about-card, .contact-info, .contact-form');
+        
+        VanillaTilt.init(tiltElements, {
+            max: 4,             // Max tilt rotation (degrees)
+            speed: 400,         // Speed of the enter/exit transition
+            glare: true,        // Enables the glassy reflection
+            "max-glare": 0.12,  // Max opacity of the glare
+            scale: 1.02,        // Slightly scales up when hovered
+            gyroscope: false    // Disable so mobile users don't have it shifting wildly
+        });
+    }
+});
+
+// ===== Ambient Floating Effect =====
+// This seamlessly takes over when Vanilla Tilt is not active
+let tiltTime = 0;
+function ambientTilt() {
+    tiltTime += 0.015;
+    const cards = document.querySelectorAll('.project-card, .news-card, .about-card, .contact-info, .contact-form');
+    
+    cards.forEach((card, i) => {
+        // Only apply ambient movement if the user is NOT actively hovering
+        // We also check if the entrance animation has fully loaded (opacity 1)
+        if (!card.matches(':hover') && card.style.opacity === '1') {
+            // Offset each card's math slightly using its index (i) so they don't all move identically
+            const rx = Math.sin(tiltTime + i * 0.5) * 1.5; 
+            const ry = Math.cos(tiltTime + i * 0.5) * 1.5;
+            const ty = Math.sin(tiltTime * 1.5 + i) * 3;
+            
+            // Replicate the perspective lock from VanillaTilt 
+            card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(${ty}px)`;
+        }
+    });
+    requestAnimationFrame(ambientTilt);
+}
+
+// Start ambient floating after 2 seconds to allow normal scroll-in animations to finish
+setTimeout(() => requestAnimationFrame(ambientTilt), 2000);
