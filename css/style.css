@@ -557,6 +557,11 @@ section {
     border: 1px solid var(--border-color);
 }
 
+/* Hide section badge labels like "Get to Know Me", "My Journey", etc. */
+.section-label {
+    display: none;
+}
+
 .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
@@ -679,7 +684,7 @@ section {
         "about-left about-right"
         "about-stats about-stats";
     gap: 1.25rem;
-    align-items: stretch;
+    align-items: start;
     position: relative;
     z-index: 1;
 }
@@ -840,7 +845,7 @@ section {
 }
 
 .about-card-icon {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 2.25rem;
@@ -849,7 +854,7 @@ section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: #fff;
     font-size: 0.95rem;
-    margin-bottom: 0.6rem;
+    margin: 0 auto 0.6rem;
     flex-shrink: 0;
 }
 
@@ -860,6 +865,20 @@ section {
     letter-spacing: 0.06em;
     color: var(--primary-color);
     margin: 0 0 0.4rem;
+}
+
+.about-right .about-card .about-card-title,
+.about-right .about-card .about-card-title {
+    text-align: center;
+}
+
+.about-right .about-card {
+    text-align: center;
+}
+
+.about-right .about-card .about-card-icon,
+.about-right .about-card .about-card-icon {
+    margin: 0 auto 0.6rem;
 }
 
 .about-pills {
@@ -1416,7 +1435,7 @@ section {
 
 .project-btn:hover { gap: 1rem; }
 
-/* ===== In The News ===== */
+/* ===== On the Web ===== */
 .news {
     background: var(--bg-primary);
     padding: 3.5rem 0;
@@ -1424,102 +1443,113 @@ section {
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
 }
 
 .news-card {
     background: color-mix(in srgb, var(--card-bg) 82%, transparent);
     border-radius: 1rem;
-    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--primary-color) 15%, var(--border-color));
     box-shadow: 0 10px 30px -18px rgba(0,0,0,0.35);
     backdrop-filter: blur(10px);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed), background var(--transition-speed);
-    border: 1px solid color-mix(in srgb, var(--primary-color) 15%, var(--border-color));
+    padding: 1.75rem 2rem;
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
     cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed), background var(--transition-speed);
+    position: relative;
+    overflow: hidden;
 }
 
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.news-card:hover::before { opacity: 1; }
+
 .news-card:hover {
+    transform: translateY(-2px);
     box-shadow: 0 16px 40px -18px rgba(0,0,0,0.42);
     border-color: color-mix(in srgb, var(--primary-color) 32%, var(--border-color));
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
 }
 
-.news-card:focus-visible,
-.news-card:focus-within {
+.news-card:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
 
-.news-image-placeholder {
-    display: block;
-    height: 220px;
+.news-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    text-align: center;
+}
+
+.news-card-org-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.65rem;
     background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
     overflow: hidden;
-    padding: 0.75rem;
-    text-decoration: none;
+    flex-shrink: 0;
 }
 
-.news-image-placeholder:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: -2px;
-}
-
-.news-image-placeholder img {
+.news-card-org-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center;
-    display: block;
-    transition: transform var(--transition-speed);
+    padding: 0.2rem;
 }
 
-.news-card:hover .news-image-placeholder img {
-    transform: scale(1.04);
-}
-
-.news-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-align: center;
-    align-items: center;
-}
-
-.news-source {
-    font-size: 0.8125rem;
+.news-card-source {
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
 }
 
-.news-content h3 {
+.news-card-title {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    line-height: 1.35;
+    margin: 0;
+    text-align: center;
 }
 
-.news-content p {
+.news-card-desc {
     color: var(--text-secondary);
-    line-height: 1.78;
-    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
 }
 
 .news-link {
     margin-top: auto;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    align-self: flex-start;
     gap: 0.5rem;
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.88rem;
     transition: gap var(--transition-speed);
 }
 
@@ -1840,40 +1870,122 @@ section {
         overflow-y: visible;
     }
 
-    /* Keep About a rigid slide like News */
-    .about.viewport-section,
-    .news {
+    /* Keep About as a rigid full-height slide */
+    .about.viewport-section {
         min-height: 100dvh;
         height: 100dvh;
         max-height: 100dvh;
         width: 100vw;
         max-width: 100vw;
         overflow: hidden;
-        scroll-margin-top: -4.5rem;
-        padding: 4.5rem 0 2rem 0;
+        padding: 3rem 0 2rem 0;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
+        scroll-margin-top: -3rem;
     }
 
-    .about.viewport-section > .container,
-    .news > .container {
+    /* News: locked full-height snap slide */
+    .news.viewport-section {
+        height: 100dvh;
+        min-height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        scroll-margin-top: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    .about.viewport-section > .container {
         display: flex;
         flex-direction: column;
         height: 100%;
         max-height: 100%;
-        overflow-y: auto;
+        min-height: 0;
         scrollbar-width: none;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .news > .container {
+        position: relative;
+        overflow: visible;
+        height: auto;
+        max-height: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .about .section-header,
     .news .section-header {
         margin-top: 0;
+        margin-bottom: 1.25rem;
     }
 
-    .about .about-content,
+    .news .section-header {
+        margin-bottom: 4.5rem;
+    }
+
+    .news .section-title {
+        font-size: clamp(1.85rem, 2.35vw, 2.35rem);
+        margin-bottom: 0.6rem;
+    }
+
+    .news .section-line {
+        width: 3.25rem;
+        height: 0.2rem;
+    }
+
+    .about .about-content { margin-bottom: 0; }
     .news .news-grid {
-        margin-bottom: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .news .news-card {
+        gap: 0.75rem;
+    }
+
+    .news-card-title {
+        font-size: 1rem;
+    }
+
+    .news-card-desc {
+        font-size: 0.85rem;
+        line-height: 1.55;
+    }
+
+    .about-content.about-hero-split {
+        gap: 1.1rem;
+    }
+
+    .about-left,
+    .about-right {
+        gap: 1.05rem;
+    }
+
+    .about-card,
+    .about-right .about-card {
+        padding: 1.15rem 1.25rem;
+    }
+
+    .about-stats {
+        gap: 0.6rem;
+    }
+
+    .stat-item {
+        padding: 0.85rem 0.75rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
     }
 
     .about.viewport-section > .container::-webkit-scrollbar,
@@ -1881,33 +1993,26 @@ section {
         display: none;
     }
 
-    .news-content {
-        text-align: center;
-        align-items: center;
-    }
-
-    .news-link {
-        justify-content: center;
-    }
-
     .contact {
         min-height: 100dvh;
-        height: auto;
-        max-height: none;
+        height: 100dvh;
+        max-height: 100dvh;
         width: 100vw;
         max-width: 100vw;
-        overflow: visible;
+        overflow: hidden;
         scroll-margin-top: -4.5rem;
     }
 
     .contact > .container {
-        max-height: none;
-        overflow-y: visible;
+        max-height: 100%;
+        overflow: hidden;
         scrollbar-width: none;
-        height: auto;
-        padding-top: 6rem;
-        padding-bottom: 4rem;
-        gap: 1.5rem;
+        height: 100%;
+        padding-top: 7.5rem;
+        padding-bottom: 1.35rem;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
     .contact > .container::-webkit-scrollbar {
@@ -1915,15 +2020,18 @@ section {
     }
 
     .contact .section-header {
-        margin-bottom: 0;
+        margin-bottom: 0.45rem;
     }
 
     .contact-content {
-        align-self: flex-start;
+        align-self: stretch;
         height: auto;
-        gap: clamp(1.5rem, 3vw, 3rem);
-        align-items: stretch;
+        flex: 1;
+        gap: clamp(1.25rem, 2.1vw, 2rem);
+        align-items: center;
+        align-content: center;
         justify-items: stretch;
+        min-height: 0;
     }
 
     .contact-info,
@@ -1937,7 +2045,7 @@ section {
     }
 
     .contact-footer-wrap {
-        margin-top: auto;
+        margin-top: 0;
         width: 100%;
     }
 

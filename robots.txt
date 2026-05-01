@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_temp/
+Disallow: /projects/smoothiiq/
+
+Sitemap: https://osaym.com/sitemap.xml
